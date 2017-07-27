@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SuperSaaSApiClient_Example' do
+  pod 'SuperSaaSApiClient', :path => '../'
+
+  target 'SuperSaaSApiClient_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
