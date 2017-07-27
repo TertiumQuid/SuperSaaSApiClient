@@ -5,6 +5,10 @@
 [![License](https://img.shields.io/cocoapods/l/SuperSaaSApiClient.svg?style=flat)](http://cocoapods.org/pods/SuperSaaSApiClient)
 [![Platform](https://img.shields.io/cocoapods/p/SuperSaaSApiClient.svg?style=flat)](http://cocoapods.org/pods/SuperSaaSApiClient)
 
+## Developer Documentation
+
+[https://www.supersaas.com/info/dev](https://www.supersaas.com/info/dev)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -16,9 +20,12 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 SuperSaaSApiClient is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
-```ruby
-pod "SuperSaaSApiClient"
-```
+    ruby
+    pod "SuperSaaSApiClient"
+
+## Useage
+
+
 
 ## Author
 
