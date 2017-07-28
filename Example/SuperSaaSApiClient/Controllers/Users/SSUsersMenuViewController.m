@@ -42,5 +42,16 @@
     }
     return cell;
 }
+    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"ShowReadUsersSegue" sender:self];
+    } else if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"ShowReadUserSegue" sender:self];
+    } else if (indexPath.row == 2) {
+        [self performSegueWithIdentifier:@"ShowAddUserSegue" sender:self];
+    }
+}
 
 @end

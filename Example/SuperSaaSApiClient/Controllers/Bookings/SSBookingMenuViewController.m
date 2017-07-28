@@ -37,7 +37,7 @@
         cell.textLabel.text = @"Read Free";
     } else if (indexPath.row == 1) {
         cell.textLabel.text = @"Read Bookings";
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 2) {
         cell.textLabel.text = @"Read Booking";
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Add Booking";
@@ -51,7 +51,7 @@
         [self performSegueWithIdentifier:@"ShowReadFreeSegue" sender:self];
     } else if (indexPath.row == 1) {
         [self performSegueWithIdentifier:@"ShowReadBookingsSegue" sender:self];
-    } else if (indexPath.row == 3) {
+    } else if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"ShowReadBookingSegue" sender:self];
     } else if (indexPath.row == 3) {
         [self performSegueWithIdentifier:@"ShowReadAddBookingSegue" sender:self];

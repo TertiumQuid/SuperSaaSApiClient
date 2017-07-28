@@ -6,8 +6,8 @@
 //  Copyright © 2017 SuperSaaS. All rights reserved.
 //
 
-#import "SSTableViewController.h"
+#import "SSFormViewController.h"
 
-@interface SSReadUserViewController : SSTableViewController
+@interface SSReadUserViewController : SSFormViewController
 
 @end

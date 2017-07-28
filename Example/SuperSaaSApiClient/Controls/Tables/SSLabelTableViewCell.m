@@ -1,13 +1,13 @@
 //
-//  SSReadFormsViewController.h
+//  SSLabelTableViewCell.m
 //  SuperSaaSApiClient
 //
 //  Created by Monty Cantsin on 28/07/17.
 //  Copyright © 2017 SuperSaaS. All rights reserved.
 //
 
-#import "SSFormViewController.h"
+#import "SSLabelTableViewCell.h"
 
-@interface SSReadFormsViewController : SSFormViewController
+@implementation SSLabelTableViewCell
 
 @end

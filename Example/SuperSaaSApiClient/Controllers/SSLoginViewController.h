@@ -6,8 +6,8 @@
 //  Copyright © 2017 SaaS. All rights reserved.
 //
 
-#import "SSTableViewController.h"
+#import "SSFormViewController.h"
 
-@interface SSLoginViewController : SSTableViewController <UITextFieldDelegate>
+@interface SSLoginViewController : SSFormViewController
 
 @end
