@@ -3,7 +3,7 @@
 //  SuperSaaSApiClient
 //
 //  Created by Monty Cantsin on 28/07/17.
-//  Copyright © 2017 Travis Dunn. All rights reserved.
+//  Copyright © 2017 SuperSaaS. All rights reserved.
 //
 
 #import "SSUsersMenuViewController.h"
@@ -14,24 +14,33 @@
 
 @implementation SSUsersMenuViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 3;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Select an API Method";
 }
-*/
+    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellId = @"MenuCell";
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
+                                                            forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Read Users";
+    } else if (indexPath.row == 1) {
+        cell.textLabel.text = @"Read User";
+    } else if (indexPath.row == 2) {
+        cell.textLabel.text = @"Add User";
+    }
+    return cell;
+}
 
 @end

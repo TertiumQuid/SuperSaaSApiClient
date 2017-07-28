@@ -1,18 +1,18 @@
 //
-//  SSReadUsersViewController.m
+//  SSReadUserViewController.m
 //  SuperSaaSApiClient
 //
 //  Created by Monty Cantsin on 28/07/17.
 //  Copyright © 2017 SuperSaaS. All rights reserved.
 //
 
-#import "SSReadUsersViewController.h"
+#import "SSReadUserViewController.h"
 
-@interface SSReadUsersViewController ()
+@interface SSReadUserViewController ()
 
 @end
 
-@implementation SSReadUsersViewController
+@implementation SSReadUserViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

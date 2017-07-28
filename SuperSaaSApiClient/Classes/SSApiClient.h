@@ -13,6 +13,7 @@
     
 + (instancetype)shared;
     
++ (BOOL)isAuthenticated;
 + (NSURLSessionDataTask *)login:(NSString *)username
                     accountName:(NSString *)accountName
                 accountPassword:(NSString *)accountPassword

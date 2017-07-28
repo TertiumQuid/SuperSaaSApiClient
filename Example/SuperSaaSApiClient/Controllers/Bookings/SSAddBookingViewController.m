@@ -1,18 +1,18 @@
 //
-//  SSReadUsersViewController.m
+//  SSAddBookingViewController.m
 //  SuperSaaSApiClient
 //
 //  Created by Monty Cantsin on 28/07/17.
-//  Copyright © 2017 SuperSaaS. All rights reserved.
+//  Copyright © 2017 Travis Dunn. All rights reserved.
 //
 
-#import "SSReadUsersViewController.h"
+#import "SSAddBookingViewController.h"
 
-@interface SSReadUsersViewController ()
+@interface SSAddBookingViewController ()
 
 @end
 
-@implementation SSReadUsersViewController
+@implementation SSAddBookingViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];

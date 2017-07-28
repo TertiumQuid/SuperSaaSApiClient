@@ -14,24 +14,29 @@ NSString * const kApiAuthCredentialsKey = @"SaaSChecksumToken";
 NSString * const kKeyChainStore = @"com.SuperSaaS";
 
 NSString * const kBaseApiUrl = @"https://www.supersaas.com/api";
-NSString * const kApiUsersPath = @"users";
-NSString * const kApiFormsPath = @"forms";
-NSString * const kApiBookingsPath = @"bookings";
-NSString * const kApiAgendaPath = @"agenda";
-NSString * const kApiFreePath = @"free";
-NSString * const kApiChangesPath = @"changes";
+NSString * const kApiUsersPath = @"users.json";
+NSString * const kApiFormsPath = @"forms.json";
+NSString * const kApiBookingsPath = @"bookings.json";
+NSString * const kApiAgendaPath = @"agenda.json";
+NSString * const kApiFreePath = @"free.json";
+NSString * const kApiChangesPath = @"changes.json";
 
 @interface SSApiClient()
     
 - (id)initAPI;
+
 - (BOOL)isAuthenticated;
 - (NSString *)authChecksum:(NSString *)username accountName:(NSString *)accountName accountPassword:(NSString *)accountPassword;
 - (NSString *)authCredentials;
 - (NSString *)md5:(NSString *)input;
+- (void)deleteCredentials;
+- (BOOL)storeCredentials:(NSString *)checksum;
+    
 - (BOOL)isSuccessfulAPIResponse:(id)responseObject
                        withTask:(NSURLSessionDataTask *)task
                       orFailure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-
+- (NSDictionary *)requestParams:(NSDictionary *)params;
+    
 - (NSURLSessionDataTask *)login:(NSString *)username
                     accountName:(NSString *)accountName
                 accountPassword:(NSString *)accountPassword
@@ -41,6 +46,72 @@ NSString * const kApiChangesPath = @"changes";
 - (NSURLSessionDataTask *)readUser:(NSString *)userId
                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)readUsers:(NSNumber *)limit
+                             offset:(NSNumber *)offset
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)createUser:(NSString *)name
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)createUser:(NSString *)name
+                               email:(NSString *)email
+                            password:(NSString *)password
+                            fullName:(NSString *)fullName
+                             address:(NSString *)address
+                              mobile:(NSString *)mobile
+                               phone:(NSString *)phone
+                             country:(NSString *)country
+                              field1:(NSString *)field1
+                              field2:(NSString *)field2
+                          superField:(NSString *)superField
+                              credit:(NSString *)credit
+                                role:(NSString *)role
+                              userId:(NSString *)userId
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)updateUser:(NSString *)userId
+                                name:(NSString *)name
+                               email:(NSString *)email
+                            password:(NSString *)password
+                            fullName:(NSString *)fullName
+                             address:(NSString *)address
+                              mobile:(NSString *)mobile
+                               phone:(NSString *)phone
+                             country:(NSString *)country
+                              field1:(NSString *)field1
+                              field2:(NSString *)field2
+                          superField:(NSString *)superField
+                              credit:(NSString *)credit
+                                role:(NSString *)role
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)deleteUser:(NSString *)userId
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)readForms:(NSString *)formDefinitionId
+                             formId:(NSString *)formId
+                               from:(NSDate *)from
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)readRecentChanges:(NSString *)scheduleId
+                                       from:(NSDate *)from
+                                       slot:(BOOL)slot
+                                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)readAgenda:(NSString *)scheduleId
+                                user:(NSString *)user
+                                from:(NSDate *)from
+                                slot:(BOOL)slot
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)readFree:(NSString *)scheduleId
+                              from:(NSDate *)from
+                            length:(NSNumber *)length
+                          resource:(NSString *)resource
+                              full:(BOOL)full
+                           success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+    
     
 @property (strong, nonatomic) UICKeyChainStore *keyChain;
 
@@ -72,6 +143,10 @@ NSString * const kApiChangesPath = @"changes";
 }
 
 #pragma mark - Authentication
+
++ (BOOL)isAuthenticated {
+    return [self.shared isAuthenticated];
+}
     
 - (BOOL)isAuthenticated {
     NSString *token = [self authCredentials];
@@ -101,7 +176,7 @@ NSString * const kApiChangesPath = @"changes";
     return ret;
 }
     
-- (BOOL)storeAccessToken:(NSString *)checksum {
+- (BOOL)storeCredentials:(NSString *)checksum {
     NSError *error;
     
     [self.keyChain setString:checksum forKey:kApiAuthCredentialsKey error:&error];
@@ -112,8 +187,10 @@ NSString * const kApiChangesPath = @"changes";
         return YES;
     }
 }
-
-//NSDictionary *responseObject = @{ @"key": key, @"response": answer };    
+    
+- (void)deleteCredentials {
+    [self.keyChain removeItemForKey:kApiAuthCredentialsKey];
+}
     
 #pragma mark - Internal utilities
     
@@ -123,6 +200,16 @@ NSString * const kApiChangesPath = @"changes";
 
 }
     
+- (NSDictionary *)requestParams:(NSDictionary *)params {
+    NSMutableDictionary *dict = [NSMutableDictionary dictionary];
+    [dict addEntriesFromDictionary:params];
+    return dict;
+}
+    
+- (NSString *)apiDate:(NSDate *)date {
+    
+}
+    
 #pragma mark - API Methods
     
 + (NSURLSessionDataTask *)login:(NSString *)username
@@ -130,7 +217,22 @@ NSString * const kApiChangesPath = @"changes";
                 accountPassword:(NSString *)accountPassword
                         success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
-
+    return [self.shared login:username accountName:accountName accountPassword:accountPassword success:success failure:failure];
+}
+    
+- (NSURLSessionDataTask *)login:(NSString *)username
+                    accountName:(NSString *)accountName
+                accountPassword:(NSString *)accountPassword
+                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSURLSessionDataTask *task = [[NSURLSessionDataTask alloc] init];
+    NSString *checksum = [self authChecksum:username accountName:accountName accountPassword:accountPassword];
+    
+    [self storeCredentials:checksum];
+    NSDictionary *response = @{};
+    success(task, response);
+    
+    return task;
 }
     
 + (void)logout {
@@ -138,7 +240,7 @@ NSString * const kApiChangesPath = @"changes";
 }
     
 - (void)logout {
-    [self.keyChain removeItemForKey:kApiAuthCredentialsKey];
+    [self deleteCredentials];
 }
     
 + (NSURLSessionDataTask *)readUser:(NSString *)userId
@@ -151,8 +253,275 @@ NSString * const kApiChangesPath = @"changes";
                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     NSString *path = [NSString stringWithFormat:@"%@/%@", kApiUsersPath, userId];
+    NSDictionary *params = [self requestParams:@{}];
     return [self GET:path parameters:@{} success:success failure:failure];
 }
+
++ (NSURLSessionDataTask *)readUsers:(NSNumber *)limit
+                             offset:(NSNumber *)offset
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readUsers:limit offset:offset success:success failure:failure];
+
+}
     
+- (NSURLSessionDataTask *)readUsers:(NSNumber *)limit
+                             offset:(NSNumber *)offset
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSDictionary *params = @{@"limit": limit, @"offset": offset};
+    params = [self requestParams:params];
+    return [self GET:kApiUsersPath parameters:params success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)createUser:(NSString *)name
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared createUser:name success:success failure:failure];
+}
+
+- (NSURLSessionDataTask *)createUser:(NSString *)name
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSDictionary *params = @{@"name": name};
+    params = [self requestParams:params];
+    return [self POST:kApiUsersPath parameters:params success:success failure:failure];
+
+}
+
++ (NSURLSessionDataTask *)createUser:(NSString *)name
+                               email:(NSString *)email
+                            password:(NSString *)password
+                            fullName:(NSString *)fullName
+                             address:(NSString *)address
+                              mobile:(NSString *)mobile
+                               phone:(NSString *)phone
+                             country:(NSString *)country
+                              field1:(NSString *)field1
+                              field2:(NSString *)field2
+                          superField:(NSString *)superField
+                              credit:(NSString *)credit
+                                role:(NSString *)role
+                              userId:(NSString *)userId
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared createUser:name email:email password:password fullName:fullName address:address mobile:mobile phone:phone country:country field1:field1 field2:field2 superField:superField credit:credit role:role userId:userId success:success failure:failure];
     
+}
+    
+- (NSURLSessionDataTask *)createUser:(NSString *)name
+                               email:(NSString *)email
+                            password:(NSString *)password
+                            fullName:(NSString *)fullName
+                             address:(NSString *)address
+                              mobile:(NSString *)mobile
+                               phone:(NSString *)phone
+                             country:(NSString *)country
+                              field1:(NSString *)field1
+                              field2:(NSString *)field2
+                          superField:(NSString *)superField
+                              credit:(NSString *)credit
+                                role:(NSString *)role
+                              userId:(NSString *)userId
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSDictionary *params = @{@"name": name, @"email": email, @"password": password, @"fullName": fullName, @"address": address, @"mobile": mobile, @"phone": phone, @"country": country, @"field1": field1, @"field2": field2, @"superField": superField, @"credit": credit, @"role": role, @"userId": userId};
+    params = [self requestParams:params];
+    return [self POST:kApiUsersPath parameters:params success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)updateUser:(NSString *)userId
+                                name:(NSString *)name
+                               email:(NSString *)email
+                            password:(NSString *)password
+                            fullName:(NSString *)fullName
+                             address:(NSString *)address
+                              mobile:(NSString *)mobile
+                               phone:(NSString *)phone
+                             country:(NSString *)country
+                              field1:(NSString *)field1
+                              field2:(NSString *)field2
+                          superField:(NSString *)superField
+                              credit:(NSString *)credit
+                                role:(NSString *)role
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared updateUser:userId name:name email:email password:password fullName:fullName address:address mobile:mobile phone:phone country:country field1:field1 field2:field2 superField:superField credit:credit role:role success:success failure:failure];
+}
+    
+- (NSURLSessionDataTask *)updateUser:(NSString *)userId
+                                name:(NSString *)name
+                               email:(NSString *)email
+                            password:(NSString *)password
+                            fullName:(NSString *)fullName
+                             address:(NSString *)address
+                              mobile:(NSString *)mobile
+                               phone:(NSString *)phone
+                             country:(NSString *)country
+                              field1:(NSString *)field1
+                              field2:(NSString *)field2
+                          superField:(NSString *)superField
+                              credit:(NSString *)credit
+                                role:(NSString *)role
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSDictionary *params = @{@"name": name, @"email": email, @"password": password, @"full-name": fullName, @"address": address, @"mobile": mobile, @"phone": phone, @"country": country, @"field-1": field1, @"field-2": field2, @"super-field": superField, @"credit": credit, @"role": role};
+    params = [self requestParams:params];
+    return [self PUT:kApiUsersPath parameters:params success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)deleteUser:(NSString *)userId
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared deleteUser:userId success:success failure:failure];
+}
+    
+- (NSURLSessionDataTask *)deleteUser:(NSString *)userId
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSString *path = [NSString stringWithFormat:@"%@/%@", kApiUsersPath, userId];
+    NSDictionary *params = [self requestParams:@{}];
+    return [self DELETE:path parameters:params success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)readForms:(NSString *)formDefinitionId
+                             formId:(NSString *)formId
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self readForms:formDefinitionId formId:formId from:NULL success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)readForms:(NSString *)formDefinitionId
+                             formId:(NSString *)formId
+                               from:(NSDate *)from
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readForms:formDefinitionId formId:formId from:from success:success failure:failure];
+}
+    
+- (NSURLSessionDataTask *)readForms:(NSString *)formDefinitionId
+                             formId:(NSString *)formId
+                               from:(NSDate *)from
+                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSDictionary *params = @{@"form_id": formDefinitionId};
+    if (formId != NULL) {
+        params = @{@"form_id": formDefinitionId, @"id": formId};
+    }
+    params = [self requestParams:params];
+    return [self POST:kApiFormsPath parameters:params success:success failure:failure];
+    
+}
+    
++ (NSURLSessionDataTask *)readRecentChanges:(NSString *)scheduleId
+                                       from:(NSDate *)from
+                                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self readRecentChanges:scheduleId from:from slot:NO success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)readRecentChanges:(NSString *)scheduleId
+                                       from:(NSDate *)from
+                                       slot:(BOOL)slot
+                                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readRecentChanges:scheduleId from:from slot:slot success:success failure:failure];
+}
+    
+- (NSURLSessionDataTask *)readRecentChanges:(NSString *)scheduleId
+                                       from:(NSDate *)from
+                                       slot:(BOOL)slot
+                                    success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                    failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *params = @{@"schedule_id": scheduleId, @"from": from};
+    if (slot) {
+        [params addEntriesFromDictionary:@{@"slot": @"true"}];
+    }
+    params = [self requestParams:params];
+    return [self POST:kApiChangesPath parameters:params success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)readAgenda:(NSString *)scheduleId
+                                user:(NSString *)user
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self readAgenda:scheduleId user:user from:NULL slot:NO success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)readAgenda:(NSString *)scheduleId
+                                user:(NSString *)user
+                                from:(NSDate *)from
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readAgenda:scheduleId user:user from:from slot:NO success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)readAgenda:(NSString *)scheduleId
+                                user:(NSString *)user
+                                from:(NSDate *)from
+                                slot:(BOOL)slot
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readAgenda:scheduleId user:user from:from slot:slot success:success failure:failure];
+}
+    
+- (NSURLSessionDataTask *)readAgenda:(NSString *)scheduleId
+                                user:(NSString *)user
+                                from:(NSDate *)from
+                                slot:(BOOL)slot
+                             success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                             failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *params = @{@"user": user, @"from": from};
+    if (slot) {
+        [params addEntriesFromDictionary:@{@"slot": @"true"}];
+    }
+    NSString *path = [NSString stringWithFormat:@"%@/%@", kApiAgendaPath, scheduleId];
+    
+    params = [self requestParams:params];
+    return [self GET:kApiAgendaPath parameters:params success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)readFree:(NSString *)scheduleId
+                              from:(NSDate *)from
+                            length:(NSNumber *)length
+                          resource:(NSString *)resource
+                           success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readFree:scheduleId from:from length:length resource:resource full:NO success:success failure:failure];
+}
+    
++ (NSURLSessionDataTask *)readFree:(NSString *)scheduleId
+                              from:(NSDate *)from
+                            length:(NSNumber *)length
+                          resource:(NSString *)resource
+                              full:(BOOL)full
+                           success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readFree:scheduleId from:from length:length resource:resource full:full success:success failure:failure];
+}
+
+- (NSURLSessionDataTask *)readFree:(NSString *)scheduleId
+                              from:(NSDate *)from
+                            length:(NSNumber *)length
+                          resource:(NSString *)resource
+                              full:(BOOL)full
+                           success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                           failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *params = @{@"from": from};
+    if (length > 0) {
+        [params addEntriesFromDictionary:@{@"length": length}];
+    }
+    if (resource != NULL) {
+        [params addEntriesFromDictionary:@{@"resource": resource}];
+    }
+    if (full) {
+        [params addEntriesFromDictionary:@{@"full": @"true"}];
+    }
+    NSString *path = [NSString stringWithFormat:@"%@/%@", kApiFreePath, scheduleId];
+    
+    params = [self requestParams:params];
+    return [self GET:kApiFreePath parameters:params success:success failure:failure];
+    
+}
+
 @end

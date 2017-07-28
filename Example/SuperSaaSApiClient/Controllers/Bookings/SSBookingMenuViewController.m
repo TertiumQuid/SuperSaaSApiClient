@@ -3,7 +3,7 @@
 //  SuperSaaSApiClient
 //
 //  Created by Monty Cantsin on 28/07/17.
-//  Copyright © 2017 Travis Dunn. All rights reserved.
+//  Copyright © 2017 SuperSaaS. All rights reserved.
 //
 
 #import "SSBookingMenuViewController.h"
@@ -14,24 +14,48 @@
 
 @implementation SSBookingMenuViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return 1;
 }
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 4;
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    return @"Select an API Method";
 }
-*/
+    
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *cellId = @"MenuCell";
+    
+    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
+                                                            forIndexPath:indexPath];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    if (indexPath.row == 0) {
+        cell.textLabel.text = @"Read Free";
+    } else if (indexPath.row == 1) {
+        cell.textLabel.text = @"Read Bookings";
+    } else if (indexPath.row == 3) {
+        cell.textLabel.text = @"Read Booking";
+    } else if (indexPath.row == 3) {
+        cell.textLabel.text = @"Add Booking";
+    }
+    return cell;
+}
+    
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (indexPath.row == 0) {
+        [self performSegueWithIdentifier:@"ShowReadFreeSegue" sender:self];
+    } else if (indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"ShowReadBookingsSegue" sender:self];
+    } else if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"ShowReadBookingSegue" sender:self];
+    } else if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"ShowReadAddBookingSegue" sender:self];
+    }
+}
 
 @end
