@@ -1,22 +1,35 @@
 {
   "name": "SuperSaaSApiClient",
   "version": "0.1.0",
-  "summary": "A short description of SuperSaaSApiClient.",
-  "description": "TODO: Add long description of the pod here.",
-  "homepage": "https://github.com/Travis Dunn/SuperSaaSApiClient",
+  "summary": "Appointment Scheduling and Reservation Booking Calendar.",
+  "description": "Online appointment scheduler for any type of business. Flexible and affordable booking software that can be integrated into any site.",
+  "homepage": "https://www.supersaas.com",
   "license": {
     "type": "MIT",
     "file": "LICENSE"
   },
   "authors": {
-    "Travis Dunn": "dunn.travis@gmail.com"
+    "SuperSaaS": "support@supersaas.com"
   },
   "source": {
     "git": "https://github.com/Travis Dunn/SuperSaaSApiClient.git",
     "tag": "0.1.0"
   },
+  "social_media_url": "https://twitter.com/supersaas",
+  "requires_arc": true,
   "platforms": {
-    "ios": "8.0"
+    "ios": "7.0",
+    "osx": "10.9",
+    "watchos": "2.0",
+    "tvos": "9.0"
   },
-  "source_files": "SuperSaaSApiClient/Classes/**/*"
+  "source_files": "SuperSaaSApiClient/Classes/**/*",
+  "dependencies": {
+    "AFNetworking": [
+      "~> 3.0"
+    ],
+    "UICKeyChainStore": [
+      "~> 2.0"
+    ]
+  }
 }

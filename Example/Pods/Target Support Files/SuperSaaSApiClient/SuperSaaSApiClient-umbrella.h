@@ -10,6 +10,8 @@
 #endif
 #endif
 
+#import "SSApiClient.h"
+#import "SSHTTPSessionManager.h"
 
 FOUNDATION_EXPORT double SuperSaaSApiClientVersionNumber;
 FOUNDATION_EXPORT const unsigned char SuperSaaSApiClientVersionString[];

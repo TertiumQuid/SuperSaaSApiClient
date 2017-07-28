@@ -1,5 +1,23 @@
 PODS:
-  - SuperSaaSApiClient (0.1.0)
+  - AFNetworking (3.1.0):
+    - AFNetworking/NSURLSession (= 3.1.0)
+    - AFNetworking/Reachability (= 3.1.0)
+    - AFNetworking/Security (= 3.1.0)
+    - AFNetworking/Serialization (= 3.1.0)
+    - AFNetworking/UIKit (= 3.1.0)
+  - AFNetworking/NSURLSession (3.1.0):
+    - AFNetworking/Reachability
+    - AFNetworking/Security
+    - AFNetworking/Serialization
+  - AFNetworking/Reachability (3.1.0)
+  - AFNetworking/Security (3.1.0)
+  - AFNetworking/Serialization (3.1.0)
+  - AFNetworking/UIKit (3.1.0):
+    - AFNetworking/NSURLSession
+  - SuperSaaSApiClient (0.1.0):
+    - AFNetworking (~> 3.0)
+    - UICKeyChainStore (~> 2.0)
+  - UICKeyChainStore (2.1.0)
 
 DEPENDENCIES:
   - SuperSaaSApiClient (from `../`)
@@ -9,7 +27,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  SuperSaaSApiClient: 52428fe435e5f7969603bef6cfdec880ef1ee2d7
+  AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  SuperSaaSApiClient: 79685bd0cfca0b2baada9bee323c7357ccd6d639
+  UICKeyChainStore: f1cbd42216a113f0165de1e733e62905b8823432
 
 PODFILE CHECKSUM: d9eba33086e733170b35fbd49ffe4f8b3faebb1d
 

@@ -19,8 +19,7 @@
                         success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
     
-+ (NSURLSessionDataTask *)logout:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                         failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
++ (void)logout;
 
 + (NSURLSessionDataTask *)readUser:(NSString *)userId
                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
