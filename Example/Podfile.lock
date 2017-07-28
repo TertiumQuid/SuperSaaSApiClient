@@ -1,0 +1,16 @@
+PODS:
+  - SuperSaaSApiClient (0.1.0)
+
+DEPENDENCIES:
+  - SuperSaaSApiClient (from `../`)
+
+EXTERNAL SOURCES:
+  SuperSaaSApiClient:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  SuperSaaSApiClient: 52428fe435e5f7969603bef6cfdec880ef1ee2d7
+
+PODFILE CHECKSUM: d9eba33086e733170b35fbd49ffe4f8b3faebb1d
+
+COCOAPODS: 1.2.1

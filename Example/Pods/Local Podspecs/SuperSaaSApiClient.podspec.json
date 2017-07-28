@@ -1,0 +1,22 @@
+{
+  "name": "SuperSaaSApiClient",
+  "version": "0.1.0",
+  "summary": "A short description of SuperSaaSApiClient.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Travis Dunn/SuperSaaSApiClient",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Travis Dunn": "dunn.travis@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/Travis Dunn/SuperSaaSApiClient.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "SuperSaaSApiClient/Classes/**/*"
+}

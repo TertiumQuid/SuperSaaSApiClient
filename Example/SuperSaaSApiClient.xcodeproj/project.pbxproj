@@ -62,10 +62,10 @@
 		6B4F262A394B47CE6B1A79CF /* Pods-SuperSaaSApiClient_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperSaaSApiClient_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SuperSaaSApiClient_Tests/Pods-SuperSaaSApiClient_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		989E1CC8DD9F112437F25A38 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		989E1CC8DD9F112437F25A38 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A2E8192E300BF95C6721F5B2 /* Pods_SuperSaaSApiClient_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperSaaSApiClient_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		A95CFB956E0F13B9790E2A89 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		E668A8CDE419C56ADE39AC82 /* SuperSaaSApiClient.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SuperSaaSApiClient.podspec; path = ../SuperSaaSApiClient.podspec; sourceTree = "<group>"; };
+		A95CFB956E0F13B9790E2A89 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		E668A8CDE419C56ADE39AC82 /* SuperSaaSApiClient.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SuperSaaSApiClient.podspec; path = ../SuperSaaSApiClient.podspec; sourceTree = "<group>"; };
 		EE3AEEBC434D3F87565C78DF /* Pods-SuperSaaSApiClient_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperSaaSApiClient_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperSaaSApiClient_Example/Pods-SuperSaaSApiClient_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -99,7 +99,7 @@
 			isa = PBXGroup;
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				6003F593195388D20070C39A /* Example for SuperSaaSApiClient */,
+				6003F593195388D20070C39A /* Example */,
 				6003F5B5195388D20070C39A /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
@@ -129,7 +129,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		6003F593195388D20070C39A /* Example for SuperSaaSApiClient */ = {
+		6003F593195388D20070C39A /* Example */ = {
 			isa = PBXGroup;
 			children = (
 				6003F59C195388D20070C39A /* SSAppDelegate.h */,
@@ -141,7 +141,7 @@
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			name = "Example for SuperSaaSApiClient";
+			name = Example;
 			path = SuperSaaSApiClient;
 			sourceTree = "<group>";
 		};

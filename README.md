@@ -1,9 +1,6 @@
 # SuperSaaSApiClient
 
-[![CI Status](http://img.shields.io/travis/Travis Dunn/SuperSaaSApiClient.svg?style=flat)](https://travis-ci.org/Travis Dunn/SuperSaaSApiClient)
-[![Version](https://img.shields.io/cocoapods/v/SuperSaaSApiClient.svg?style=flat)](http://cocoapods.org/pods/SuperSaaSApiClient)
-[![License](https://img.shields.io/cocoapods/l/SuperSaaSApiClient.svg?style=flat)](http://cocoapods.org/pods/SuperSaaSApiClient)
-[![Platform](https://img.shields.io/cocoapods/p/SuperSaaSApiClient.svg?style=flat)](http://cocoapods.org/pods/SuperSaaSApiClient)
+An iOS/OSX appointment scheduling and reservation booking calendar API for [SuperSaaS](https://www.supersaas.com).
 
 ## Developer Documentation
 
@@ -25,11 +22,17 @@ it, simply add the following line to your Podfile:
 
 ## Useage
 
-
+### Login
+### Logout
+### Read User
+### Create User
+### Update User
+### Delete User
+### Read Forms
 
 ## Author
 
-Travis Dunn, dunn.travis@gmail.com
+SuperSaaS, support@supersaas.com
 
 ## License
 

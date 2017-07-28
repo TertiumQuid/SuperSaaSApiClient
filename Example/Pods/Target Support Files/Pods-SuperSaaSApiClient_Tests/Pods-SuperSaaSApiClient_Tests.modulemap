@@ -1,0 +1,6 @@
+framework module Pods_SuperSaaSApiClient_Tests {
+  umbrella header "Pods-SuperSaaSApiClient_Tests-umbrella.h"
+
+  export *
+  module * { export * }
+}

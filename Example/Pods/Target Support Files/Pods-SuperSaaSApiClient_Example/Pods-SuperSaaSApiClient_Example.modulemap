@@ -1,0 +1,6 @@
+framework module Pods_SuperSaaSApiClient_Example {
+  umbrella header "Pods-SuperSaaSApiClient_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}

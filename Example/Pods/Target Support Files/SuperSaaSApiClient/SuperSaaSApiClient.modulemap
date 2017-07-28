@@ -1,0 +1,6 @@
+framework module SuperSaaSApiClient {
+  umbrella header "SuperSaaSApiClient-umbrella.h"
+
+  export *
+  module * { export * }
+}
