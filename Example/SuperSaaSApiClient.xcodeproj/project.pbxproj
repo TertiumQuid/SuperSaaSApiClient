@@ -42,6 +42,8 @@
 		D3634BCE1F2BD3CB003CAFCA /* SSLabelTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3634BCD1F2BD3CB003CAFCA /* SSLabelTableViewCell.m */; };
 		D3634BD11F2BD3ED003CAFCA /* SSSwitchTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = D3634BD01F2BD3ED003CAFCA /* SSSwitchTableViewCell.m */; };
 		D3634BD51F2BD619003CAFCA /* SSSettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3634BD41F2BD619003CAFCA /* SSSettingsViewController.m */; };
+		D36D087A1F2E14AD0016AB06 /* SSReadRecentChangesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36D08791F2E14AD0016AB06 /* SSReadRecentChangesViewController.m */; };
+		D36D087D1F2E15EE0016AB06 /* SSReadAgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D36D087C1F2E15EE0016AB06 /* SSReadAgendaViewController.m */; };
 		FB3FB50EC3CCFC953FA60753 /* Pods_SuperSaaSApiClient_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2E8192E300BF95C6721F5B2 /* Pods_SuperSaaSApiClient_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -122,6 +124,10 @@
 		D3634BD01F2BD3ED003CAFCA /* SSSwitchTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSSwitchTableViewCell.m; path = Controls/Tables/SSSwitchTableViewCell.m; sourceTree = "<group>"; };
 		D3634BD31F2BD619003CAFCA /* SSSettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSSettingsViewController.h; path = Controllers/Settings/SSSettingsViewController.h; sourceTree = "<group>"; };
 		D3634BD41F2BD619003CAFCA /* SSSettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSSettingsViewController.m; path = Controllers/Settings/SSSettingsViewController.m; sourceTree = "<group>"; };
+		D36D08781F2E14AD0016AB06 /* SSReadRecentChangesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSReadRecentChangesViewController.h; path = Controllers/Bookings/SSReadRecentChangesViewController.h; sourceTree = "<group>"; };
+		D36D08791F2E14AD0016AB06 /* SSReadRecentChangesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSReadRecentChangesViewController.m; path = Controllers/Bookings/SSReadRecentChangesViewController.m; sourceTree = "<group>"; };
+		D36D087B1F2E15EE0016AB06 /* SSReadAgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSReadAgendaViewController.h; path = Controllers/Bookings/SSReadAgendaViewController.h; sourceTree = "<group>"; };
+		D36D087C1F2E15EE0016AB06 /* SSReadAgendaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSReadAgendaViewController.m; path = Controllers/Bookings/SSReadAgendaViewController.m; sourceTree = "<group>"; };
 		E668A8CDE419C56ADE39AC82 /* SuperSaaSApiClient.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SuperSaaSApiClient.podspec; path = ../SuperSaaSApiClient.podspec; sourceTree = "<group>"; };
 		EE3AEEBC434D3F87565C78DF /* Pods-SuperSaaSApiClient_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SuperSaaSApiClient_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SuperSaaSApiClient_Example/Pods-SuperSaaSApiClient_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -321,6 +327,10 @@
 				D3634BC11F2BAA2B003CAFCA /* SSAddBookingViewController.m */,
 				D3634BC61F2BC356003CAFCA /* SSReadBookingViewController.h */,
 				D3634BC71F2BC356003CAFCA /* SSReadBookingViewController.m */,
+				D36D08781F2E14AD0016AB06 /* SSReadRecentChangesViewController.h */,
+				D36D08791F2E14AD0016AB06 /* SSReadRecentChangesViewController.m */,
+				D36D087B1F2E15EE0016AB06 /* SSReadAgendaViewController.h */,
+				D36D087C1F2E15EE0016AB06 /* SSReadAgendaViewController.m */,
 			);
 			name = Bookings;
 			sourceTree = "<group>";
@@ -561,6 +571,7 @@
 				D3634BA51F2B2419003CAFCA /* SSBookingMenuViewController.m in Sources */,
 				D3634BCE1F2BD3CB003CAFCA /* SSLabelTableViewCell.m in Sources */,
 				D3634BBF1F2BAA19003CAFCA /* SSReadBookingsViewController.m in Sources */,
+				D36D087D1F2E15EE0016AB06 /* SSReadAgendaViewController.m in Sources */,
 				D3634BB41F2B2B7D003CAFCA /* SSReadFormsViewController.m in Sources */,
 				D3634BB11F2B27E8003CAFCA /* SSAddUserViewController.m in Sources */,
 				D3634BC81F2BC356003CAFCA /* SSReadBookingViewController.m in Sources */,
@@ -571,6 +582,7 @@
 				D3634BD51F2BD619003CAFCA /* SSSettingsViewController.m in Sources */,
 				D3634BA81F2B242E003CAFCA /* SSFormsMenuViewController.m in Sources */,
 				D3634BBC1F2BA9FB003CAFCA /* SSReadFreeViewController.m in Sources */,
+				D36D087A1F2E14AD0016AB06 /* SSReadRecentChangesViewController.m in Sources */,
 				D3634BAE1F2B27CB003CAFCA /* SSReadUsersViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				D3634BC21F2BAA2B003CAFCA /* SSAddBookingViewController.m in Sources */,

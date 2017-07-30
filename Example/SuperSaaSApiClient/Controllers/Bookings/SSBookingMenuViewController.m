@@ -19,7 +19,7 @@
 }
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 4;
+    return 5;
 }
     
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
@@ -41,6 +41,8 @@
         cell.textLabel.text = @"Read Booking";
     } else if (indexPath.row == 3) {
         cell.textLabel.text = @"Add Booking";
+    } else if (indexPath.row == 4) {
+        cell.textLabel.text = @"Recent Changes";
     }
     return cell;
 }
@@ -55,6 +57,8 @@
         [self performSegueWithIdentifier:@"ShowReadBookingSegue" sender:self];
     } else if (indexPath.row == 3) {
         [self performSegueWithIdentifier:@"ShowReadAddBookingSegue" sender:self];
+    } else if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"ShowReadRecentChangesSegue" sender:self];
     }
 }
 
