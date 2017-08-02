@@ -33,23 +33,11 @@
 
 @implementation SSAddUserViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 14;
+        return 15;
     } else {
         return 1;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Enter API Input";
-    } else {
-        return @"API Response";
     }
 }
 
@@ -96,23 +84,13 @@
             return cell;
             
         } else {
-            static NSString *cellId = @"ButtonCell";
-            [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                    forIndexPath:indexPath];
-            cell.textLabel.text = @"Submit";
-            return cell;
-
+            return [self getButtonCell:tableView forIndexPath:indexPath];
         }
         
     } else if (indexPath.section == 1) {
-        static NSString *cellId = @"ResponseCell";
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                forIndexPath:indexPath];
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-        cell.textLabel.text = self.apiResponse;
-        return cell;
+        return [self getResponseCell:tableView
+                        forIndexPath:indexPath
+                            withText:self.apiResponse];
     }
     return nil;
 }

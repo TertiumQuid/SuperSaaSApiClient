@@ -183,7 +183,7 @@
                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
     
-+ (NSURLSessionDataTask *)readBookings:(NSString *)bookingId
++ (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
                                  start:(NSDate *)start
                                  limit:(NSNumber *)limit
                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success

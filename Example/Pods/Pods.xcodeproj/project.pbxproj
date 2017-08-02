@@ -56,6 +56,18 @@
 		CEF63B7D291DC9DAB284CBF69FFA81C6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5208023BC664FD495E1D0D1E77BD5F5F /* Foundation.framework */; };
 		CF287829627F26B2EB4382B897D06A0E /* AFNetworking-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E91FC43967E0D5A692AD2627A97AD268 /* AFNetworking-dummy.m */; };
 		D2587441A937DE7B75622FFF0EF43730 /* SuperSaaSApiClient-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 42D8BACCD829E5B340E5269172E0A623 /* SuperSaaSApiClient-dummy.m */; };
+		D31B860E1F3232C4002978FA /* User.h in Headers */ = {isa = PBXBuildFile; fileRef = D31B860C1F3232C4002978FA /* User.h */; };
+		D31B860F1F3232C4002978FA /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B860D1F3232C4002978FA /* User.m */; };
+		D31B86121F3232E5002978FA /* Free.h in Headers */ = {isa = PBXBuildFile; fileRef = D31B86101F3232E5002978FA /* Free.h */; };
+		D31B86131F3232E5002978FA /* Free.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B86111F3232E5002978FA /* Free.m */; };
+		D31B86161F3232F0002978FA /* Form.h in Headers */ = {isa = PBXBuildFile; fileRef = D31B86141F3232F0002978FA /* Form.h */; };
+		D31B86171F3232F0002978FA /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B86151F3232F0002978FA /* Form.m */; };
+		D31B861A1F323376002978FA /* Change.h in Headers */ = {isa = PBXBuildFile; fileRef = D31B86181F323376002978FA /* Change.h */; };
+		D31B861B1F323376002978FA /* Change.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B86191F323376002978FA /* Change.m */; };
+		D31B861E1F323393002978FA /* Booking.h in Headers */ = {isa = PBXBuildFile; fileRef = D31B861C1F323393002978FA /* Booking.h */; };
+		D31B861F1F323393002978FA /* Booking.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B861D1F323393002978FA /* Booking.m */; };
+		D31B86221F32339F002978FA /* Agenda.h in Headers */ = {isa = PBXBuildFile; fileRef = D31B86201F32339F002978FA /* Agenda.h */; };
+		D31B86231F32339F002978FA /* Agenda.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B86211F32339F002978FA /* Agenda.m */; };
 		D4E80BD7EAAB83200183110578A80591 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F8CC30EEECD45E1D93EE4DCFAF31940F /* AFURLSessionManager.m */; };
 		DCE13BCCD19F31B9D5600EAA4C67B5D1 /* Pods-SuperSaaSApiClient_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B2DA9986849FDA03330BF415837C5B10 /* Pods-SuperSaaSApiClient_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DD887A93A200A87A51B3D00BD1B80D20 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 8BDCCA6CA90C41F31D43CED5B96EBB95 /* AFNetworkReachabilityManager.m */; };
@@ -185,6 +197,18 @@
 		CE88E9C613CCD8BDB3A521916563A733 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		CFED2EC790041153E4FA800038831291 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
 		D0077B9CD1A4CEE438FCAA889CCE2F50 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
+		D31B860C1F3232C4002978FA /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = User.h; path = Resources/User.h; sourceTree = "<group>"; };
+		D31B860D1F3232C4002978FA /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = User.m; path = Resources/User.m; sourceTree = "<group>"; };
+		D31B86101F3232E5002978FA /* Free.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Free.h; path = Resources/Free.h; sourceTree = "<group>"; };
+		D31B86111F3232E5002978FA /* Free.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Free.m; path = Resources/Free.m; sourceTree = "<group>"; };
+		D31B86141F3232F0002978FA /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Form.h; path = Resources/Form.h; sourceTree = "<group>"; };
+		D31B86151F3232F0002978FA /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Form.m; path = Resources/Form.m; sourceTree = "<group>"; };
+		D31B86181F323376002978FA /* Change.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Change.h; path = Resources/Change.h; sourceTree = "<group>"; };
+		D31B86191F323376002978FA /* Change.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Change.m; path = Resources/Change.m; sourceTree = "<group>"; };
+		D31B861C1F323393002978FA /* Booking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Booking.h; path = Resources/Booking.h; sourceTree = "<group>"; };
+		D31B861D1F323393002978FA /* Booking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Booking.m; path = Resources/Booking.m; sourceTree = "<group>"; };
+		D31B86201F32339F002978FA /* Agenda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Agenda.h; path = Resources/Agenda.h; sourceTree = "<group>"; };
+		D31B86211F32339F002978FA /* Agenda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Agenda.m; path = Resources/Agenda.m; sourceTree = "<group>"; };
 		DB0284DC0A8297B83875177CA22EAF95 /* SuperSaaSApiClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuperSaaSApiClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC06F6A2740ACB8C3A7C8CF3286D4979 /* SSHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SSHTTPSessionManager.m; sourceTree = "<group>"; };
 		DE31456E5EAC394C1DAED90970E21AC6 /* SSApiClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SSApiClient.h; sourceTree = "<group>"; };
@@ -494,6 +518,18 @@
 		D3584FC41F30648400334C1B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				D31B860C1F3232C4002978FA /* User.h */,
+				D31B860D1F3232C4002978FA /* User.m */,
+				D31B86101F3232E5002978FA /* Free.h */,
+				D31B86111F3232E5002978FA /* Free.m */,
+				D31B86141F3232F0002978FA /* Form.h */,
+				D31B86151F3232F0002978FA /* Form.m */,
+				D31B86181F323376002978FA /* Change.h */,
+				D31B86191F323376002978FA /* Change.m */,
+				D31B861C1F323393002978FA /* Booking.h */,
+				D31B861D1F323393002978FA /* Booking.m */,
+				D31B86201F32339F002978FA /* Agenda.h */,
+				D31B86211F32339F002978FA /* Agenda.m */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -580,9 +616,15 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31B861E1F323393002978FA /* Booking.h in Headers */,
+				D31B86121F3232E5002978FA /* Free.h in Headers */,
 				4705A773D2CE6846EFAC2BB602528723 /* SSApiClient.h in Headers */,
+				D31B86161F3232F0002978FA /* Form.h in Headers */,
+				D31B86221F32339F002978FA /* Agenda.h in Headers */,
 				FB3D50E16187A442BF85B12768923C16 /* SSHTTPSessionManager.h in Headers */,
+				D31B861A1F323376002978FA /* Change.h in Headers */,
 				3F8FD37DED53CD9C448601DB1E3F59AE /* SuperSaaSApiClient-umbrella.h in Headers */,
+				D31B860E1F3232C4002978FA /* User.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -722,7 +764,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D31B86131F3232E5002978FA /* Free.m in Sources */,
+				D31B861B1F323376002978FA /* Change.m in Sources */,
+				D31B86231F32339F002978FA /* Agenda.m in Sources */,
+				D31B860F1F3232C4002978FA /* User.m in Sources */,
 				21404C6F4C0FD644EFBAC5545543AFE4 /* SSApiClient.m in Sources */,
+				D31B86171F3232F0002978FA /* Form.m in Sources */,
+				D31B861F1F323393002978FA /* Booking.m in Sources */,
 				93DCD761E7E0CE74F11583BAB11D1B5A /* SSHTTPSessionManager.m in Sources */,
 				D2587441A937DE7B75622FFF0EF43730 /* SuperSaaSApiClient-dummy.m in Sources */,
 			);

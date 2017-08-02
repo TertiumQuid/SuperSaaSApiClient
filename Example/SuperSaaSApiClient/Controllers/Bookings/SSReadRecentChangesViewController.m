@@ -20,10 +20,6 @@
 
 @implementation SSReadRecentChangesViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
         return 4;
@@ -41,51 +37,27 @@
             SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                              forIndexPath:indexPath];
             if (indexPath.row == 0) {
-                cell.textField.delegate = self;
                 cell.textField.placeholder = @"Schedule ID";
                 cell.textField.tag = 0;
-                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-                [cell setLayoutMargins:UIEdgeInsetsZero];
                 return cell;
             } else if (indexPath.row == 1) {
-                cell.textField.delegate = self;
                 cell.textField.placeholder = @"Slot";
                 cell.textField.tag = 1;
-                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-                [cell setLayoutMargins:UIEdgeInsetsZero];
                 return cell;
             } else if (indexPath.row == 2) {
-                cell.textField.delegate = self;
                 cell.textField.placeholder = @"From";
-                cell.textField.tag = 1;
-                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-                [cell setLayoutMargins:UIEdgeInsetsZero];
-                return cell;
-            } else if (indexPath.row == 3) {
-                static NSString *cellId = @"ButtonCell";
-                [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                        forIndexPath:indexPath];
-                cell.textLabel.text = @"Submit";
+                cell.textField.tag = 2;
                 return cell;
             }
             
         } else {
-            static NSString *cellId = @"ButtonCell";
-            [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                    forIndexPath:indexPath];
-            cell.textLabel.text = @"Submit";
-            return cell;
+            return [self getButtonCell:tableView forIndexPath:indexPath];
         }
         
     } if (indexPath.section == 1) {
-        static NSString *cellId = @"ResponseCell";
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                forIndexPath:indexPath];
-        cell.textLabel.text = self.apiResponse;
-        return cell;
+        return [self getResponseCell:tableView
+                        forIndexPath:indexPath
+                            withText:self.apiResponse];
     }
     return nil;
 }

@@ -18,23 +18,11 @@
 
 @implementation SSReadBookingViewController
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 2;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return 2;
     } else {
         return 1;
-    }
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Enter API Input";
-    } else {
-        return @"API Response";
     }
 }
 
@@ -43,28 +31,16 @@
         if (indexPath.row == 0) {
             static NSString *cellId = @"TextFieldCell";
             SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Limit";
-            cell.textField.tag = 0;
+            cell.textField.placeholder = @"Booking ID";
             cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
             return cell;
-        } else if (indexPath.row == 2) {
-            static NSString *cellId = @"ButtonCell";
-            [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                    forIndexPath:indexPath];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-            cell.textLabel.text = @"Submit";
-            return cell;
+        } else {
+            return [self getButtonCell:tableView forIndexPath:indexPath];
         }
     } if (indexPath.section == 1) {
-        static NSString *cellId = @"ResponseCell";
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                forIndexPath:indexPath];
-        cell.textLabel.text = self.apiResponse;
-        return cell;
+        return [self getResponseCell:tableView
+                        forIndexPath:indexPath
+                            withText:self.apiResponse];
     }
     return nil;
 }

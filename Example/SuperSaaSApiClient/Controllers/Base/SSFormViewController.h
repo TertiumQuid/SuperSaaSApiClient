@@ -7,9 +7,13 @@
 //
 
 #import "SSTableViewController.h"
+#import "SSTextFieldTableViewCell.h"
 
 @interface SSFormViewController : SSTableViewController <UITextFieldDelegate>
 
-- (void) showAlert:(NSString *)title withMessage:(NSString *)message;    
+- (void) showAlert:(NSString *)title withMessage:(NSString *)message;
+
+- (SSTextFieldTableViewCell *) getResponseCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath withText:(NSString *)text;
+- (UITableViewCell *) getButtonCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath;
     
 @end

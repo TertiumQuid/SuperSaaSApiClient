@@ -115,7 +115,15 @@ NSString * const kApiChangesPath = @"changes.json";
 - (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-    
+- (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
+                                 limit:(NSNumber *)limit
+                                 start:(NSDate *)start
+                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)deleteBooking:(NSString *)bookingId
+                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+
 @property (strong, nonatomic) UICKeyChainStore *keyChain;
 
 @end
@@ -545,6 +553,54 @@ NSString * const kApiChangesPath = @"changes.json";
                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     NSString *path = [NSString stringWithFormat:@"%@/%@", kApiBookingsPath, scheduleId];
     return [self GET:path parameters:@{} success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
+                                 limit:(NSNumber *)limit
+                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readBookings:scheduleId limit:limit start:NULL success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
+                                 start:(NSDate *)start
+                                 limit:(NSNumber *)limit
+                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared readBookings:scheduleId limit:limit start:start success:success failure:failure];
+
+}
+
+- (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
+                                 limit:(NSNumber *)limit
+                                 start:(NSDate *)start
+                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *params = @{};
+    if (scheduleId) {
+        [params addEntriesFromDictionary:@{@"schedule_id": scheduleId}];
+    }
+    if (limit > 0) {
+        [params addEntriesFromDictionary:@{@"limit": limit}];
+    }
+    
+    params = [self requestParams:params];
+    return [self GET:kApiBookingsPath parameters:params success:success failure:failure];
+}
+
++ (NSURLSessionDataTask *)deleteBooking:(NSString *)bookingId
+                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared deleteBooking:bookingId success:success failure:failure];
+}
+
+- (NSURLSessionDataTask *)deleteBooking:(NSString *)bookingId
+                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSString *path = [NSString stringWithFormat:@"%@/%@", kApiBookingsPath, bookingId];
+    NSDictionary *params = [self requestParams:@{}];
+    return [self DELETE:path parameters:params success:success failure:failure];
+    
 }
 
 @end

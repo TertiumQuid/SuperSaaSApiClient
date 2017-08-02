@@ -77,11 +77,7 @@ NSString * const kLoginUserKey = @"SaaSUsername";
             return cell;
         }
     } if (indexPath.section == 1) {
-        static NSString *cellId = @"ButtonCell";
-        [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                forIndexPath:indexPath];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        UITableViewCell *cell = [self getButtonCell:tableView forIndexPath:indexPath];
         cell.textLabel.text = @"Login to SuperSaaS";
         return cell;
     }
