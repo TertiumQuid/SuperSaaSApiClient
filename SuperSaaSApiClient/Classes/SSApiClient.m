@@ -29,8 +29,9 @@ NSString * const kApiChangesPath = @"changes.json";
 - (NSString *)authChecksum:(NSString *)username accountName:(NSString *)accountName accountPassword:(NSString *)accountPassword;
 - (NSString *)authCredentials;
 - (NSString *)md5:(NSString *)input;
-- (void)deleteCredentials;
 - (BOOL)storeCredentials:(NSString *)checksum;
+- (void)deleteCredentials;
+- (NSString *)dateToApiString:(NSDate *)date;
     
 - (BOOL)isSuccessfulAPIResponse:(id)responseObject
                        withTask:(NSURLSessionDataTask *)task
@@ -111,7 +112,9 @@ NSString * const kApiChangesPath = @"changes.json";
                               full:(BOOL)full
                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-    
+- (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
+                              success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                              failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
     
 @property (strong, nonatomic) UICKeyChainStore *keyChain;
 
@@ -191,6 +194,12 @@ NSString * const kApiChangesPath = @"changes.json";
 - (void)deleteCredentials {
     [self.keyChain removeItemForKey:kApiAuthCredentialsKey];
 }
+
+- (NSString *)dateToApiString:(NSDate *)date {
+    NSDateFormatter *format = [[NSDateFormatter alloc] init];
+    [format setDateFormat:@"YYYY-MM-dd"];
+    return [format stringFromDate:date];
+}
     
 #pragma mark - Internal utilities
     
@@ -229,6 +238,7 @@ NSString * const kApiChangesPath = @"changes.json";
     NSString *checksum = [self authChecksum:username accountName:accountName accountPassword:accountPassword];
     
     [self storeCredentials:checksum];
+    
     NSDictionary *response = @{};
     success(task, response);
     
@@ -478,7 +488,7 @@ NSString * const kApiChangesPath = @"changes.json";
     NSString *path = [NSString stringWithFormat:@"%@/%@", kApiAgendaPath, scheduleId];
     
     params = [self requestParams:params];
-    return [self GET:kApiAgendaPath parameters:params success:success failure:failure];
+    return [self GET:path parameters:params success:success failure:failure];
 }
 
 + (NSURLSessionDataTask *)readFree:(NSString *)scheduleId
@@ -520,8 +530,21 @@ NSString * const kApiChangesPath = @"changes.json";
     NSString *path = [NSString stringWithFormat:@"%@/%@", kApiFreePath, scheduleId];
     
     params = [self requestParams:params];
-    return [self GET:kApiFreePath parameters:params success:success failure:failure];
+    return [self GET:path parameters:params success:success failure:failure];
     
+}
+
++ (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
+                              success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                              failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self readBooking:scheduleId success:success failure:failure];
+}
+
+- (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
+                              success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                              failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSString *path = [NSString stringWithFormat:@"%@/%@", kApiBookingsPath, scheduleId];
+    return [self GET:path parameters:@{} success:success failure:failure];
 }
 
 @end

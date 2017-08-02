@@ -8,8 +8,13 @@
 
 #import "SSReadBookingsViewController.h"
 #import "SSTextFieldTableViewCell.h"
+#import "SSApiClient.h"
 
 @interface SSReadBookingsViewController ()
+
+@property (nonatomic, strong) NSNumber *limit;
+@property (nonatomic, strong) NSNumber *offset;
+@property (nonatomic, strong) NSString *apiResponse;
 
 @end
 

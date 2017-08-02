@@ -8,26 +8,17 @@
 
 #import "SSReadUsersViewController.h"
 #import "SSTextFieldTableViewCell.h"
+#import "SSApiClient.h"
 
 @interface SSReadUsersViewController ()
 
-@property (nonatomic, strong) NSString *limit;
-@property (nonatomic, strong) NSString *offset;
+@property (nonatomic, strong) NSNumber *limit;
+@property (nonatomic, strong) NSNumber *offset;
 @property (nonatomic, strong) NSString *apiResponse;
     
 @end
 
 @implementation SSReadUsersViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44;
-    
-    [self.tableView setNeedsLayout];
-    [self.tableView layoutIfNeeded];
-}
     
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -55,28 +46,21 @@
             static NSString *cellId = @"TextFieldCell";
             SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                              forIndexPath:indexPath];
-            cell.textField.delegate = self;
             cell.textField.placeholder = @"Limit";
             cell.textField.tag = 0;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
             return cell;
         } else if (indexPath.row == 1) {
             static NSString *cellId = @"TextFieldCell";
             SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                              forIndexPath:indexPath];
-            cell.textField.delegate = self;
             cell.textField.placeholder = @"Offset";
             cell.textField.tag = 1;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
             return cell;
         } else if (indexPath.row == 2) {
             static NSString *cellId = @"ButtonCell";
             [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                     forIndexPath:indexPath];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = @"Submit";
             return cell;
         }
@@ -90,14 +74,38 @@
     }
     return nil;
 }
+
+#pragma mark - Table view delegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
     
+    if (isButtonRow) {
+        [SSApiClient readUsers:self.limit
+                        offset:self.offset
+                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                       
+                       [self dismissViewControllerAnimated:NO completion:nil];
+                       
+                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                       NSString *message = [error.userInfo objectForKey:@"NSDebugDescription"];
+                       [self showAlert:@"Error" withMessage:message];
+                       
+                   }];
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - Text field delegate
     
 - (void)textFieldDidEndEditing:(UITextField *)textField {
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+    NSNumber *number = [formatter numberFromString:textField.text];
+    
     if (textField.tag == 0) {
-        self.limit = textField.text;
+        self.limit = number;
     } else if (textField.tag == 1) {
-        self.offset = textField.text;
+        self.offset = number;
     }
 }
     

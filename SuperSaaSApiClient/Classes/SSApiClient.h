@@ -174,11 +174,11 @@
                                 success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                 failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
     
-+ (NSURLSessionDataTask *)readBooking:(NSString *)bookingId
++ (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
     
-+ (NSURLSessionDataTask *)readBookings:(NSString *)bookingId
++ (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
                                  limit:(NSNumber *)limit
                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;

@@ -18,17 +18,6 @@
 
 @implementation SSReadBookingViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44;
-    
-    [self.tableView setNeedsLayout];
-    [self.tableView layoutIfNeeded];
-}
-
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }

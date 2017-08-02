@@ -20,16 +20,6 @@
 
 @implementation SSReadAgendaViewController
 
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44;
-    
-    [self.tableView setNeedsLayout];
-    [self.tableView layoutIfNeeded];
-}
-
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
 }
@@ -55,6 +45,39 @@
         NSInteger rows = [self tableView:tableView numberOfRowsInSection:indexPath.section];
         
         if (indexPath.row < rows - 1) {
+            static NSString *cellId = @"TextFieldCell";
+            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
+                                                                             forIndexPath:indexPath];
+            if (indexPath.row == 0) {
+                cell.textField.delegate = self;
+                cell.textField.placeholder = @"Limit";
+                cell.textField.tag = 0;
+                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                [cell setLayoutMargins:UIEdgeInsetsZero];
+                return cell;
+            } else if (indexPath.row == 1) {
+                cell.textField.delegate = self;
+                cell.textField.placeholder = @"Offset";
+                cell.textField.tag = 1;
+                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                [cell setLayoutMargins:UIEdgeInsetsZero];
+                return cell;
+            } else if (indexPath.row == 2) {
+                cell.textField.delegate = self;
+                cell.textField.placeholder = @"Offset";
+                cell.textField.tag = 1;
+                cell.textField.keyboardType = UIKeyboardTypeNumberPad;
+                [cell setLayoutMargins:UIEdgeInsetsZero];
+                return cell;
+            } else if (indexPath.row == 3) {
+                static NSString *cellId = @"ButtonCell";
+                [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
+                UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
+                                                                        forIndexPath:indexPath];
+                cell.textLabel.text = @"Submit";
+                return cell;
+            }
+            
         } else {
             static NSString *cellId = @"ButtonCell";
             [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
@@ -62,48 +85,8 @@
                                                                     forIndexPath:indexPath];
             cell.textLabel.text = @"Submit";
             return cell;
-            
         }
         
-        
-        if (indexPath.row == 0) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Limit";
-            cell.textField.tag = 0;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-            return cell;
-        } else if (indexPath.row == 1) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Offset";
-            cell.textField.tag = 1;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-            return cell;
-        } else if (indexPath.row == 2) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Offset";
-            cell.textField.tag = 1;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-            return cell;
-        } else if (indexPath.row == 3) {
-            static NSString *cellId = @"ButtonCell";
-            [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                    forIndexPath:indexPath];
-            cell.textLabel.text = @"Submit";
-            return cell;
-        }
     } if (indexPath.section == 1) {
         static NSString *cellId = @"ResponseCell";
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];

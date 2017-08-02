@@ -8,6 +8,7 @@
 
 #import "SSAddUserViewController.h"
 #import "SSTextFieldTableViewCell.h"
+#import "SSApiClient.h"
 
 @interface SSAddUserViewController ()
 
@@ -31,16 +32,6 @@
 @end
 
 @implementation SSAddUserViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44;
-    
-    [self.tableView setNeedsLayout];
-    [self.tableView layoutIfNeeded];
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -70,7 +61,6 @@
             static NSString *cellId = @"TextFieldCell";
             SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                              forIndexPath:indexPath];
-            cell.textField.delegate = self;
             cell.textField.tag = indexPath.row;
             
             if (indexPath.row == 0) {
@@ -115,36 +105,7 @@
 
         }
         
-        
-        if (indexPath.row == 0) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Limit";
-            cell.textField.tag = 0;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-            return cell;
-        } else if (indexPath.row == 1) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Offset";
-            cell.textField.tag = 1;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
-            [cell setLayoutMargins:UIEdgeInsetsZero];
-            return cell;
-        } else if (indexPath.row == 2) {
-            static NSString *cellId = @"ButtonCell";
-            [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                    forIndexPath:indexPath];
-            cell.textLabel.text = @"Submit";
-            return cell;
-        }
-    } if (indexPath.section == 1) {
+    } else if (indexPath.section == 1) {
         static NSString *cellId = @"ResponseCell";
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
@@ -154,6 +115,39 @@
         return cell;
     }
     return nil;
+}
+
+#pragma mark - Table view delegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
+    
+    if (isButtonRow) {
+        [SSApiClient createUser:self.name
+                          email:self.email
+                       password:self.password
+                       fullName:self.fullName
+                        address:self.address
+                         mobile:self.mobile
+                          phone:self.phone
+                        country:self.country
+                         field1:self.field1
+                         field2:self.field2
+                     superField:self.superField
+                         credit:self.credit
+                           role:self.role
+                         userId:self.userId
+                        success:^(NSURLSessionDataTask *task, id responseObject) {
+                          
+                          [self dismissViewControllerAnimated:NO completion:nil];
+                          
+                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                          NSString *message = [error.userInfo objectForKey:@"NSDebugDescription"];
+                          [self showAlert:@"Error" withMessage:message];
+                          
+                      }];
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Text field delegate

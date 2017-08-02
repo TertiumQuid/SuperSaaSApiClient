@@ -8,6 +8,7 @@
 
 #import "SSReadUserViewController.h"
 #import "SSTextFieldTableViewCell.h"
+#import "SSApiClient.h"
 
 @interface SSReadUserViewController ()
 
@@ -17,16 +18,6 @@
 @end
 
 @implementation SSReadUserViewController
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-    
-    self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.estimatedRowHeight = 44;
-    
-    [self.tableView setNeedsLayout];
-    [self.tableView layoutIfNeeded];
-}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
@@ -54,10 +45,8 @@
             static NSString *cellId = @"TextFieldCell";
             SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                              forIndexPath:indexPath];
-            cell.textField.delegate = self;
-            cell.textField.placeholder = @"Limit";
+            cell.textField.placeholder = @"User ID";
             cell.textField.tag = 0;
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
             [cell setLayoutMargins:UIEdgeInsetsZero];
             return cell;
         } else if (indexPath.row == 2) {
@@ -65,7 +54,6 @@
             [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
                                                                     forIndexPath:indexPath];
-            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
             cell.textLabel.text = @"Submit";
             return cell;
         }
@@ -78,6 +66,27 @@
         return cell;
     }
     return nil;
+}
+
+
+#pragma mark - Table view delegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
+    
+    if (isButtonRow) {
+        [SSApiClient readUser:self.userId
+                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                           
+                           [self dismissViewControllerAnimated:NO completion:nil];
+                           
+                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                           NSString *message = [error.userInfo objectForKey:@"NSDebugDescription"];
+                           [self showAlert:@"Error" withMessage:message];
+                           
+                       }];
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Text field delegate

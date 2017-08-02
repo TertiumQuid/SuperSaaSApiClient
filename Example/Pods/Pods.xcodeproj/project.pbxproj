@@ -116,16 +116,16 @@
 		08DB85CE87987C2C7E152495885B80F9 /* AFImageDownloader.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFImageDownloader.m; path = "UIKit+AFNetworking/AFImageDownloader.m"; sourceTree = "<group>"; };
 		0AAF6E1A80C42E18B500BA182C81C6CF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0E76CE8F5FB3047EF2CE78E4321F4E76 /* SSApiClient.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SSApiClient.m; sourceTree = "<group>"; };
-		11A24671748DBAD01868DC3168042C84 /* Pods_SuperSaaSApiClient_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SuperSaaSApiClient_Tests.framework; path = "Pods-SuperSaaSApiClient_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1324158A8DD26CAB3BF0DD29DFD23E20 /* UICKeyChainStore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = UICKeyChainStore.modulemap; sourceTree = "<group>"; };
+		11A24671748DBAD01868DC3168042C84 /* Pods_SuperSaaSApiClient_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperSaaSApiClient_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1324158A8DD26CAB3BF0DD29DFD23E20 /* UICKeyChainStore.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = UICKeyChainStore.modulemap; sourceTree = "<group>"; };
 		1432C059B442B812906D96A6A9853BFE /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLResponseSerialization.m; path = AFNetworking/AFURLResponseSerialization.m; sourceTree = "<group>"; };
 		1824E13D99E6BB1279B2AB49AFD50D39 /* AFNetworking.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AFNetworking.xcconfig; sourceTree = "<group>"; };
-		1BAC55F8CB512BB745D7704B0660B4C2 /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = AFNetworking.modulemap; sourceTree = "<group>"; };
-		1DDC6398EE458AC6A0376F7333DD5C07 /* Pods-SuperSaaSApiClient_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SuperSaaSApiClient_Example.modulemap"; sourceTree = "<group>"; };
+		1BAC55F8CB512BB745D7704B0660B4C2 /* AFNetworking.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = AFNetworking.modulemap; sourceTree = "<group>"; };
+		1DDC6398EE458AC6A0376F7333DD5C07 /* Pods-SuperSaaSApiClient_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SuperSaaSApiClient_Example.modulemap"; sourceTree = "<group>"; };
 		1FDAB27FD1D5B5B95663429C2691D719 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2075159A01180BC3A5C3E207F878A7F4 /* AFNetworking-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AFNetworking-umbrella.h"; sourceTree = "<group>"; };
 		286A821F7F419F1A516CC0DF505EF90A /* UIImageView+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImageView+AFNetworking.m"; path = "UIKit+AFNetworking/UIImageView+AFNetworking.m"; sourceTree = "<group>"; };
-		2A9442E6CC1BEC6882039C025F1507A9 /* UICKeyChainStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = UICKeyChainStore.framework; path = UICKeyChainStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A9442E6CC1BEC6882039C025F1507A9 /* UICKeyChainStore.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UICKeyChainStore.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C24D7698291B695D0B75814E074FD02 /* UIButton+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIButton+AFNetworking.m"; path = "UIKit+AFNetworking/UIButton+AFNetworking.m"; sourceTree = "<group>"; };
 		2DCB8016E4E97D8AD98678214EB9FE8A /* SuperSaaSApiClient-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SuperSaaSApiClient-umbrella.h"; sourceTree = "<group>"; };
 		2E71B95DEB88261EA75780B6CB27DE1A /* UIRefreshControl+AFNetworking.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIRefreshControl+AFNetworking.m"; path = "UIKit+AFNetworking/UIRefreshControl+AFNetworking.m"; sourceTree = "<group>"; };
@@ -157,17 +157,17 @@
 		80C67554FD149BC147FF4B65257734B7 /* AFURLSessionManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFURLSessionManager.h; path = AFNetworking/AFURLSessionManager.h; sourceTree = "<group>"; };
 		8448E7A217C466CE527A44EC2086887A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/CoreGraphics.framework; sourceTree = DEVELOPER_DIR; };
 		872574449FA850D0975B71244820A413 /* UICKeyChainStore-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UICKeyChainStore-dummy.m"; sourceTree = "<group>"; };
-		8758E63C932F596AD5934C4EC145361F /* Pods_SuperSaaSApiClient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SuperSaaSApiClient_Example.framework; path = "Pods-SuperSaaSApiClient_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		89E91F1F12C5BAC718B4B17F9603F347 /* SuperSaaSApiClient.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = SuperSaaSApiClient.modulemap; sourceTree = "<group>"; };
+		8758E63C932F596AD5934C4EC145361F /* Pods_SuperSaaSApiClient_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperSaaSApiClient_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		89E91F1F12C5BAC718B4B17F9603F347 /* SuperSaaSApiClient.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = SuperSaaSApiClient.modulemap; sourceTree = "<group>"; };
 		8BDCCA6CA90C41F31D43CED5B96EBB95 /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFNetworkReachabilityManager.m; path = AFNetworking/AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9AE8ED6925E15275727A7F9C9241D2EF /* Pods-SuperSaaSApiClient_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SuperSaaSApiClient_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		9E04CE52D9869EDDEFCF230160680AF1 /* Pods-SuperSaaSApiClient_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperSaaSApiClient_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9FD595948FE6CA231B90A7FE714624D4 /* AFImageDownloader.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFImageDownloader.h; path = "UIKit+AFNetworking/AFImageDownloader.h"; sourceTree = "<group>"; };
 		A6CC66B4D57CBCC09E87E5A9C63BE5CC /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFURLRequestSerialization.m; path = AFNetworking/AFURLRequestSerialization.m; sourceTree = "<group>"; };
 		A8BE3731C097B8FA0B8AF9CBF800B8B6 /* Pods-SuperSaaSApiClient_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SuperSaaSApiClient_Tests-resources.sh"; sourceTree = "<group>"; };
 		A9A6C38D39F0614D499B0E492D8BC4CA /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.3.sdk/System/Library/Frameworks/Security.framework; sourceTree = DEVELOPER_DIR; };
-		A9B7F900537CF1877EA5156916A4BBBC /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AFNetworking.framework; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A9B7F900537CF1877EA5156916A4BBBC /* AFNetworking.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AFNetworking.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AD1366D6F1F5A0D22AE2C14D3DB985EA /* Pods-SuperSaaSApiClient_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SuperSaaSApiClient_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		ADC1F6064E9A626ECAF204BBADBDFDAF /* AFSecurityPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = AFSecurityPolicy.m; path = AFNetworking/AFSecurityPolicy.m; sourceTree = "<group>"; };
 		AF244AEFF475ABB605739AFF90237452 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -181,11 +181,11 @@
 		C80A20941F4A3C26267BAA46B43050B3 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CC5A22EA0AAC27217D519A2B96A8A735 /* UICKeyChainStore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = UICKeyChainStore.xcconfig; sourceTree = "<group>"; };
 		CD47212D26A62FD7C3E275CCB25AC51E /* AFNetworkActivityIndicatorManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = AFNetworkActivityIndicatorManager.h; path = "UIKit+AFNetworking/AFNetworkActivityIndicatorManager.h"; sourceTree = "<group>"; };
-		CE31BC54169BCAF874BC7CDA0634029E /* Pods-SuperSaaSApiClient_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; path = "Pods-SuperSaaSApiClient_Tests.modulemap"; sourceTree = "<group>"; };
+		CE31BC54169BCAF874BC7CDA0634029E /* Pods-SuperSaaSApiClient_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-SuperSaaSApiClient_Tests.modulemap"; sourceTree = "<group>"; };
 		CE88E9C613CCD8BDB3A521916563A733 /* UIButton+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIButton+AFNetworking.h"; path = "UIKit+AFNetworking/UIButton+AFNetworking.h"; sourceTree = "<group>"; };
 		CFED2EC790041153E4FA800038831291 /* UIImage+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+AFNetworking.h"; path = "UIKit+AFNetworking/UIImage+AFNetworking.h"; sourceTree = "<group>"; };
 		D0077B9CD1A4CEE438FCAA889CCE2F50 /* UIKit+AFNetworking.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIKit+AFNetworking.h"; path = "UIKit+AFNetworking/UIKit+AFNetworking.h"; sourceTree = "<group>"; };
-		DB0284DC0A8297B83875177CA22EAF95 /* SuperSaaSApiClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SuperSaaSApiClient.framework; path = SuperSaaSApiClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB0284DC0A8297B83875177CA22EAF95 /* SuperSaaSApiClient.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SuperSaaSApiClient.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DC06F6A2740ACB8C3A7C8CF3286D4979 /* SSHTTPSessionManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = SSHTTPSessionManager.m; sourceTree = "<group>"; };
 		DE31456E5EAC394C1DAED90970E21AC6 /* SSApiClient.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = SSApiClient.h; sourceTree = "<group>"; };
 		E91FC43967E0D5A692AD2627A97AD268 /* AFNetworking-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AFNetworking-dummy.m"; sourceTree = "<group>"; };
@@ -270,7 +270,6 @@
 				4F220C8598D353D57E65EC4041D5B584 /* UICKeyChainStore.m */,
 				5B6CC6B161660831CE97C1855BAA50E7 /* Support Files */,
 			);
-			name = UICKeyChainStore;
 			path = UICKeyChainStore;
 			sourceTree = "<group>";
 		};
@@ -279,7 +278,6 @@
 			children = (
 				736EB9B9495A5E4E8B07C44F50B4F215 /* Classes */,
 			);
-			name = SuperSaaSApiClient;
 			path = SuperSaaSApiClient;
 			sourceTree = "<group>";
 		};
@@ -349,19 +347,18 @@
 				43D0C203BF0F25A2AB1826890988E7B2 /* Support Files */,
 				99487A7FCAAAC77943AB19DEFCFF945A /* UIKit */,
 			);
-			name = AFNetworking;
 			path = AFNetworking;
 			sourceTree = "<group>";
 		};
 		736EB9B9495A5E4E8B07C44F50B4F215 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				D3584FC41F30648400334C1B /* Resources */,
 				DE31456E5EAC394C1DAED90970E21AC6 /* SSApiClient.h */,
 				0E76CE8F5FB3047EF2CE78E4321F4E76 /* SSApiClient.m */,
 				F1CC4883D265B795D7FEFA41CEDC9B02 /* SSHTTPSessionManager.h */,
 				DC06F6A2740ACB8C3A7C8CF3286D4979 /* SSHTTPSessionManager.m */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -492,6 +489,13 @@
 				AF9C05BC5FEC4616DEDC79BFDE500B3D /* SuperSaaSApiClient */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		D3584FC41F30648400334C1B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		E778A072E6F49C6A7822445665693ED7 /* Security */ = {
