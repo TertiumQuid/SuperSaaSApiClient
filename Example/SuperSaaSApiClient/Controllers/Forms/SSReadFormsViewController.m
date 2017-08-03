@@ -57,23 +57,16 @@
     return nil;
 }
 
-
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
-    
-    self.apiResponse = @"Loading...";
-    [self.tableView reloadData];
-    
-    if (isButtonRow) {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
+        [self showApiLoading];
         [SSApiClient readForms:self.formDefinitionId
                         formId:self.formId
                           from:self.from
                        success:^(NSURLSessionDataTask *task, id responseObject) {
-                           self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
-                           [self.tableView reloadData];
-                           
+                           [self showApiResponse:responseObject];
                        } failure:^(NSURLSessionDataTask *task, NSError *error) {
                            [self showApiError:error];
                        }];

@@ -47,9 +47,7 @@
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 1;
-    
-    if (isButtonRow) {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
         [SSApiClient readBooking:self.bookingId
                          success:^(NSURLSessionDataTask *task, id responseObject) {
                              self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];

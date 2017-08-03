@@ -6,8 +6,8 @@
 //  Copyright © 2017 SuperSaaS. All rights reserved.
 //
 
-#import "SSTableViewController.h"
+#import "SSMenuViewController.h"
 
-@interface SSBookingMenuViewController : SSTableViewController
+@interface SSBookingMenuViewController : SSMenuViewController
 
 @end

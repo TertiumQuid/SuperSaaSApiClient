@@ -62,12 +62,8 @@
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
-    
-    self.apiResponse = @"Loading...";
-    [self.tableView reloadData];
-    
-    if (isButtonRow) {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
+        [self showApiLoading];
         [SSApiClient readAgenda:self.scheduleId
                            user:self.user
                            from:self.from

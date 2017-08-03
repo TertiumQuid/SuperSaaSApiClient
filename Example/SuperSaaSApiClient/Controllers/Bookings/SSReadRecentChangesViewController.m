@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) NSString *scheduleId;
 @property (nonatomic, strong) NSString *slot;
-@property (nonatomic, strong) NSString *from;
+@property (nonatomic, strong) NSDate *from;
 
 @end
 
@@ -58,15 +58,6 @@
     return nil;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Enter API Input";
-    } else {
-        return @"API Response";
-    }
-}
-
-
 #pragma mark - Text field delegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
@@ -75,7 +66,7 @@
     } else if (textField.tag == 1) {
         self.slot = textField.text;
     } else if (textField.tag == 2) {
-        self.from = textField.text;
+        self.from = [self getDate:textField.text];
     }
 }
 

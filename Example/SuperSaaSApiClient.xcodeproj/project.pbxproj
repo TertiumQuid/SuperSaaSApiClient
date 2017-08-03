@@ -22,6 +22,7 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		D31B86261F3385F2002978FA /* SSMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31B86251F3385F2002978FA /* SSMenuViewController.m */; };
 		D3634B951F2B21B3003CAFCA /* SSTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3634B941F2B21B3003CAFCA /* SSTableViewController.m */; };
 		D3634B991F2B21F1003CAFCA /* SSNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3634B981F2B21F1003CAFCA /* SSNavigationController.m */; };
 		D3634B9C1F2B2235003CAFCA /* SSTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = D3634B9B1F2B2235003CAFCA /* SSTabBarController.m */; };
@@ -84,6 +85,8 @@
 		989E1CC8DD9F112437F25A38 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		A2E8192E300BF95C6721F5B2 /* Pods_SuperSaaSApiClient_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SuperSaaSApiClient_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A95CFB956E0F13B9790E2A89 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		D31B86241F3385F2002978FA /* SSMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSMenuViewController.h; path = Controllers/Base/SSMenuViewController.h; sourceTree = "<group>"; };
+		D31B86251F3385F2002978FA /* SSMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSMenuViewController.m; path = Controllers/Base/SSMenuViewController.m; sourceTree = "<group>"; };
 		D3634B931F2B21B3003CAFCA /* SSTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSTableViewController.h; path = Controllers/Base/SSTableViewController.h; sourceTree = "<group>"; };
 		D3634B941F2B21B3003CAFCA /* SSTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SSTableViewController.m; path = Controllers/Base/SSTableViewController.m; sourceTree = "<group>"; };
 		D3634B971F2B21F1003CAFCA /* SSNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SSNavigationController.h; path = Controllers/Base/SSNavigationController.h; sourceTree = "<group>"; };
@@ -284,6 +287,8 @@
 				D3634B9B1F2B2235003CAFCA /* SSTabBarController.m */,
 				D3634BC91F2BCDB5003CAFCA /* SSFormViewController.h */,
 				D3634BCA1F2BCDB5003CAFCA /* SSFormViewController.m */,
+				D31B86241F3385F2002978FA /* SSMenuViewController.h */,
+				D31B86251F3385F2002978FA /* SSMenuViewController.m */,
 			);
 			name = Base;
 			sourceTree = "<group>";
@@ -582,6 +587,7 @@
 				D3634BD51F2BD619003CAFCA /* SSSettingsViewController.m in Sources */,
 				D3634BA81F2B242E003CAFCA /* SSFormsMenuViewController.m in Sources */,
 				D3634BBC1F2BA9FB003CAFCA /* SSReadFreeViewController.m in Sources */,
+				D31B86261F3385F2002978FA /* SSMenuViewController.m in Sources */,
 				D36D087A1F2E14AD0016AB06 /* SSReadRecentChangesViewController.m in Sources */,
 				D3634BAE1F2B27CB003CAFCA /* SSReadUsersViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,

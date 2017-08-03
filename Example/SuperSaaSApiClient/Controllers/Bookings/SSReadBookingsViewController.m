@@ -14,6 +14,7 @@
 
 @property (nonatomic, strong) NSString *scheduleId;
 @property (nonatomic, strong) NSNumber *limit;
+@property (nonatomic, strong) NSDate *start;
 
 @end
 
@@ -21,7 +22,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return 4;
     } else {
         return 1;
     }
@@ -33,17 +34,22 @@
         
         if (indexPath.row < rows - 1) {
             NSString *text = @"";
+            UIKeyboardType keyboard = UIKeyboardTypeDefault;
+            
             if (indexPath.row == 0) {
                 text = @"Schedule ID";
             } else if (indexPath.row == 1) {
                 text = @"Limit";
+                keyboard = UIKeyboardTypeNumberPad;
+            } else if (indexPath.row == 2) {
+                text = @"Start (YYYY-MM-DD)";
             }
             
             SSTextFieldTableViewCell *cell = [self getTextFieldCell:tableView
                                                        forIndexPath:indexPath
                                                            withText:text
                                                             withTag:indexPath.row];
-            cell.textField.keyboardType = UIKeyboardTypeNumberPad;
+            cell.textField.keyboardType = keyboard;
             return cell;
             
         } else {
@@ -56,6 +62,24 @@
                             withText:self.apiResponse];
     }
     return nil;
+}
+
+#pragma mark - Table view delegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
+        [self showApiLoading];
+        [SSApiClient readBookings:self.scheduleId
+                            start:self.start
+                            limit:self.limit
+                          success:^(NSURLSessionDataTask *task, id responseObject) {
+                              [self showApiResponse:responseObject];
+                          }
+                          failure:^(NSURLSessionDataTask *task, NSError *error) {
+                              [self showApiError:error];
+                          }];
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 #pragma mark - Text field delegate

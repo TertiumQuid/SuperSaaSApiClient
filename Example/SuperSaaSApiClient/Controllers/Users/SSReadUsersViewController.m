@@ -58,21 +58,16 @@
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
-    
-    self.apiResponse = @"Loading...";
-    [self.tableView reloadData];
-    
-    if (isButtonRow) {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
+        [self showApiLoading];
         [SSApiClient readUsers:self.limit
                         offset:self.offset
-                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                       self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
-                       [self.tableView reloadData];
-                       
-                   } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                       [self showApiError:error];
-                   }];
+                       success:^(NSURLSessionDataTask *task, id responseObject) {
+                           [self showApiResponse:responseObject];
+                       }
+                       failure:^(NSURLSessionDataTask *task, NSError *error) {
+                           [self showApiError:error];
+                       }];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

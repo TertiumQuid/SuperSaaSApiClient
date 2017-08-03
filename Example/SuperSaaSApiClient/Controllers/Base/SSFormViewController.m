@@ -27,18 +27,15 @@
     return [dateformat dateFromString:text];
 }
 
+- (BOOL) isButtonRow:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath {
+    NSInteger rows = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+    return indexPath.row == rows - 1 - 1;
+}
+
 #pragma mark - Table
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 2;
-}
-
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Enter API Input";
-    } else {
-        return @"API Response";
-    }
 }
 
 #pragma mark - Alerts
@@ -54,6 +51,16 @@
     [alert addAction:ok];
     
     [self presentViewController:alert animated:YES completion:nil];
+}
+
+- (void) showApiLoading {
+    self.apiResponse = @"Loading...";
+    [self.tableView reloadData];
+}
+
+- (void) showApiResponse:(NSDictionary *)responseObject {
+    self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
+    [self.tableView reloadData];
 }
 
 - (void) showApiError:(NSError *)error {

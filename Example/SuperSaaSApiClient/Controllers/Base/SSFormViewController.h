@@ -14,7 +14,10 @@
 
 @property (nonatomic, strong) NSString *apiResponse;
 
+- (BOOL) isButtonRow:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath;
 - (void) showAlert:(NSString *)title withMessage:(NSString *)message;
+- (void) showApiLoading;
+- (void) showApiResponse:(NSDictionary *)responseObject;
 - (void) showApiError:(NSError *)error;
 
 - (SSTextFieldTableViewCell *) getTextFieldCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath withText:(NSString *)text withTag:(NSInteger)tag;

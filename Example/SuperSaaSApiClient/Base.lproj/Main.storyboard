@@ -36,6 +36,10 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Users API" id="F81-I0-Z6E"/>
+                    <connections>
+                        <segue destination="SeM-Jz-qvX" kind="show" identifier="ShowAddUserSegue" id="9uE-Ws-3mN"/>
+                        <segue destination="Na6-Az-Txx" kind="show" identifier="ShowReadUserSegue" id="V2y-L4-Z4g"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NVZ-7M-KDA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -51,7 +55,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextFieldCell" id="aBY-tI-rx3" customClass="SSTextFieldTableViewCell">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="aBY-tI-rx3" id="jRb-kl-8oa">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -74,7 +78,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonCell" id="miM-st-dL7">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="miM-st-dL7" id="at9-Qs-nLW">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -91,7 +95,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ResponseCell" id="gjd-JQ-LnA" customClass="SSLabelTableViewCell">
-                                <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gjd-JQ-LnA" id="QWm-2G-DYI">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -128,7 +132,7 @@
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TextFieldCell" id="I9G-l4-k0B" customClass="SSTextFieldTableViewCell">
-                                <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="56" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="I9G-l4-k0B" id="wNv-Um-g0J">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -151,7 +155,7 @@
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ButtonCell" id="AEf-y9-0Mm">
-                                <rect key="frame" x="0.0" y="99.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="100" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="AEf-y9-0Mm" id="dfE-T2-JZ3">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
@@ -168,7 +172,7 @@
                                 </tableViewCellContentView>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ResponseCell" id="XcD-iH-zn6" customClass="SSLabelTableViewCell">
-                                <rect key="frame" x="0.0" y="143.5" width="375" height="44"/>
+                                <rect key="frame" x="0.0" y="144" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="XcD-iH-zn6" id="WcW-pB-GEQ">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>

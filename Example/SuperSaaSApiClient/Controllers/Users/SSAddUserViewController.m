@@ -95,9 +95,8 @@
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 14;
-    
-    if (isButtonRow) {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
+        [self showApiLoading];
         [SSApiClient createUser:self.name
                           email:self.email
                        password:self.password
@@ -113,10 +112,9 @@
                            role:self.role
                          userId:self.userId
                         success:^(NSURLSessionDataTask *task, id responseObject) {
-                            self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
-                            [self.tableView reloadData];
-                          
-                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                            [self showApiResponse:responseObject];
+                        }
+                        failure:^(NSURLSessionDataTask *task, NSError *error) {
                           [self showApiError:error];
                       }];
     }
