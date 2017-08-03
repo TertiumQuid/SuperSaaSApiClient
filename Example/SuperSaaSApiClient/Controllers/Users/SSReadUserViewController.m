@@ -13,7 +13,6 @@
 @interface SSReadUserViewController ()
 
 @property (nonatomic, strong) NSString *userId;
-@property (nonatomic, strong) NSString *apiResponse;
 
 @end
 
@@ -21,7 +20,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 3;
+        return 2;
     } else {
         return 1;
     }
@@ -30,13 +29,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
         if (indexPath.row == 0) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.placeholder = @"User ID";
-            cell.textField.tag = 0;
-            return cell;
-        } else if (indexPath.row == 2) {
+            return [self getTextFieldCell:tableView
+                             forIndexPath:indexPath
+                                 withText:@"User ID"
+                                  withTag:0];
+        } else {
             return [self getButtonCell:tableView forIndexPath:indexPath];
         }
     } if (indexPath.section == 1) {
@@ -47,23 +44,20 @@
     return nil;
 }
 
-
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
+    bool isButtonRow = indexPath.section == 0 && indexPath.row == 1;
     
     if (isButtonRow) {
         [SSApiClient readUser:self.userId
-                       success:^(NSURLSessionDataTask *task, id responseObject) {
-                           
-                           [self dismissViewControllerAnimated:NO completion:nil];
-                           
-                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                           NSString *message = [error.userInfo objectForKey:@"NSDebugDescription"];
-                           [self showAlert:@"Error" withMessage:message];
-                           
-                       }];
+                      success:^(NSURLSessionDataTask *task, id responseObject) {
+                          self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
+                          [self.tableView reloadData];
+                          
+                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                          [self showApiError:error];
+                      }];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }

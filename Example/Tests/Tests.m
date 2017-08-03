@@ -2,8 +2,8 @@
 //  SuperSaaSApiClientTests.m
 //  SuperSaaSApiClientTests
 //
-//  Created by Travis Dunn on 07/28/2017.
-//  Copyright (c) 2017 Travis Dunn. All rights reserved.
+//  Created by Monty Cantsin on 07/28/2017.
+//  Copyright (c) 2017 SuperSaaS. All rights reserved.
 //
 
 @import XCTest;

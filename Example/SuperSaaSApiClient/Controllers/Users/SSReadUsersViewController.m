@@ -14,7 +14,6 @@
 
 @property (nonatomic, strong) NSNumber *limit;
 @property (nonatomic, strong) NSNumber *offset;
-@property (nonatomic, strong) NSString *apiResponse;
     
 @end
 
@@ -30,21 +29,22 @@
     
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.placeholder = @"Limit";
-            cell.textField.tag = 0;
-            return cell;
-        } else if (indexPath.row == 1) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.placeholder = @"Offset";
-            cell.textField.tag = 1;
-            return cell;
-        } else if (indexPath.row == 2) {
+        NSInteger rows = [self tableView:tableView numberOfRowsInSection:indexPath.section];
+        
+        if (indexPath.row < rows - 1) {
+            NSString *text = @"";
+            if (indexPath.row == 0) {
+                text = @"Limit";
+            } else if (indexPath.row == 1) {
+                text = @"Offset";
+            }
+        
+            return [self getTextFieldCell:tableView
+                             forIndexPath:indexPath
+                                 withText:text
+                                  withTag:indexPath.row];
+
+        } else {
             return [self getButtonCell:tableView forIndexPath:indexPath];
         }
     } if (indexPath.section == 1) {
@@ -60,17 +60,18 @@
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
     
+    self.apiResponse = @"Loading...";
+    [self.tableView reloadData];
+    
     if (isButtonRow) {
         [SSApiClient readUsers:self.limit
                         offset:self.offset
                    success:^(NSURLSessionDataTask *task, id responseObject) {
-                       
-                       [self dismissViewControllerAnimated:NO completion:nil];
+                       self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
+                       [self.tableView reloadData];
                        
                    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                       NSString *message = [error.userInfo objectForKey:@"NSDebugDescription"];
-                       [self showAlert:@"Error" withMessage:message];
-                       
+                       [self showApiError:error];
                    }];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

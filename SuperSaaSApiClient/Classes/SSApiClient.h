@@ -12,7 +12,7 @@
 @interface SSApiClient : SSHTTPSessionManager
     
 + (instancetype)shared;
-    
+
 + (BOOL)isAuthenticated;
 + (NSURLSessionDataTask *)login:(NSString *)username
                     accountName:(NSString *)accountName

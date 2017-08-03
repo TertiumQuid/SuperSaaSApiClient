@@ -10,7 +10,9 @@
 #import <AFNetworking/AFNetworking.h>
 
 @interface SSHTTPSessionManager : AFHTTPSessionManager
-    
+
+- (void)setDebug:(BOOL)enabled;
+
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(NSDictionary *)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success

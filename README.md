@@ -50,7 +50,7 @@ The SuperSaaS API is used through static helper methods available in the `SSApiC
 
 + The HTTP success and failure callbacks are easily defined inline using Completion Block syntax.
 
-### Methods
+### API Methods
 
 The following methods for managing account calendars are supported.
 
@@ -68,6 +68,13 @@ The following methods for managing account calendars are supported.
 #### Update Booking
 #### Read Booking
 #### Delete Booking
+
+### Utility Methods
+
+The following utility methods are available.
+
+#### Is Authenticated
+#### Set Debug
 
 ## Calendar UI
 

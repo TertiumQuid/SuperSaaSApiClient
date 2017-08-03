@@ -2,8 +2,8 @@
 //  SSAppDelegate.m
 //  SuperSaaSApiClient
 //
-//  Created by Travis Dunn on 07/28/2017.
-//  Copyright (c) 2017 Travis Dunn. All rights reserved.
+//  Created by Monty Cantsin on 07/28/2017.
+//  Copyright (c) 2017 SuperSaas. All rights reserved.
 //
 
 #import "SSAppDelegate.h"

@@ -56,8 +56,8 @@
     } else if (indexPath.row == 2) {
         [self performSegueWithIdentifier:@"ShowReadBookingSegue" sender:self];
     } else if (indexPath.row == 3) {
-        [self performSegueWithIdentifier:@"ShowReadAddBookingSegue" sender:self];
-    } else if (indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"ShowAddBookingSegue" sender:self];
+    } else if (indexPath.row == 4) {
         [self performSegueWithIdentifier:@"ShowReadRecentChangesSegue" sender:self];
     }
 }

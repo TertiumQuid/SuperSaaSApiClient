@@ -8,8 +8,20 @@
 
 #import "SSHTTPSessionManager.h"
 
+@interface SSHTTPSessionManager()
+
+@property (nonatomic) BOOL debugEnabled;
+
+@end
+
 @implementation SSHTTPSessionManager
-    
+
+#pragma mark - Utilities
+
+- (void)setDebug:(BOOL)enabled {
+    self.debugEnabled = enabled;
+}
+
 #pragma mark - Internal utilities
     
 - (void)configSerialization {
@@ -33,6 +45,9 @@
                    parameters:(NSDictionary *)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    if (self.debugEnabled) {
+        NSLog(@"GET %@ - %@", URLString, parameters);
+    }
     
     return [super GET:URLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) success(task, responseObject);
@@ -43,6 +58,9 @@
                     parameters:(NSDictionary *)parameters
                        success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                        failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    if (self.debugEnabled) {
+        NSLog(@"POST %@ - %@", URLString, parameters);
+    }
     
     return [super POST:URLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) success(task, responseObject);
@@ -53,6 +71,9 @@
                    parameters:(NSDictionary *)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    if (self.debugEnabled) {
+        NSLog(@"PUT %@ - %@", URLString, parameters);
+    }
     
     return [super PUT:URLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) success(task, responseObject);
@@ -63,6 +84,9 @@
                       parameters:(NSDictionary *)parameters
                          success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                          failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    if (self.debugEnabled) {
+        NSLog(@"DELETE %@ - %@", URLString, parameters);
+    }
     
     return [super DELETE:URLString parameters:parameters success:^(NSURLSessionDataTask *task, id responseObject) {
         if (success) success(task, responseObject);

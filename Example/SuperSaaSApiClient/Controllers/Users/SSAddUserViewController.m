@@ -27,8 +27,6 @@
 @property (nonatomic, strong) NSString *role;
 @property (nonatomic, strong) NSString *userId;
 
-@property (nonatomic, strong) NSString *apiResponse;
-
 @end
 
 @implementation SSAddUserViewController
@@ -46,42 +44,41 @@
         NSInteger rows = [self tableView:tableView numberOfRowsInSection:indexPath.section];
         
         if (indexPath.row < rows - 1) {
-            static NSString *cellId = @"TextFieldCell";
-            SSTextFieldTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                             forIndexPath:indexPath];
-            cell.textField.tag = indexPath.row;
-            
+            NSString *text = @"";
             if (indexPath.row == 0) {
-                cell.textField.placeholder = @"Name";
+                text = @"Name";
             } else if (indexPath.row == 1) {
-                cell.textField.placeholder = @"Email";
+                text = @"Email";
             } else if (indexPath.row == 2) {
-                cell.textField.placeholder = @"Password";
+                text = @"Password";
             } else if (indexPath.row == 3) {
-                cell.textField.placeholder = @"Full Name";
+                text = @"Full Name";
             } else if (indexPath.row == 4) {
-                cell.textField.placeholder = @"Address";
+                text = @"Address";
             } else if (indexPath.row == 5) {
-                cell.textField.placeholder = @"Mobile";
+                text = @"Mobile";
             } else if (indexPath.row == 6) {
-                cell.textField.placeholder = @"Phone";
+                text = @"Phone";
             } else if (indexPath.row == 7) {
-                cell.textField.placeholder = @"Country";
+                text = @"Country";
             } else if (indexPath.row == 8) {
-                cell.textField.placeholder = @"Field1";
+                text = @"Field1";
             } else if (indexPath.row == 9) {
-                cell.textField.placeholder = @"Field2";
+                text = @"Field2";
             } else if (indexPath.row == 10) {
-                cell.textField.placeholder = @"Super Field";
+                text = @"Super Field";
             } else if (indexPath.row == 11) {
-                cell.textField.placeholder = @"Credit";
+                text = @"Credit";
             } else if (indexPath.row == 12) {
-                cell.textField.placeholder = @"Role";
+                text = @"Role";
             } else if (indexPath.row == 13) {
-                cell.textField.placeholder = @"User ID";
+                text = @"User ID";
             }
             
-            return cell;
+            return [self getTextFieldCell:tableView
+                             forIndexPath:indexPath
+                                 withText:text
+                                  withTag:indexPath.row];
             
         } else {
             return [self getButtonCell:tableView forIndexPath:indexPath];
@@ -98,7 +95,7 @@
 #pragma mark - Table view delegate
 
 - (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    bool isButtonRow = indexPath.section == 0 && indexPath.row == 2;
+    bool isButtonRow = indexPath.section == 0 && indexPath.row == 14;
     
     if (isButtonRow) {
         [SSApiClient createUser:self.name
@@ -116,13 +113,11 @@
                            role:self.role
                          userId:self.userId
                         success:^(NSURLSessionDataTask *task, id responseObject) {
-                          
-                          [self dismissViewControllerAnimated:NO completion:nil];
+                            self.apiResponse = [NSString stringWithFormat:@"%@", responseObject];
+                            [self.tableView reloadData];
                           
                       } failure:^(NSURLSessionDataTask *task, NSError *error) {
-                          NSString *message = [error.userInfo objectForKey:@"NSDebugDescription"];
-                          [self showAlert:@"Error" withMessage:message];
-                          
+                          [self showApiError:error];
                       }];
     }
     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];

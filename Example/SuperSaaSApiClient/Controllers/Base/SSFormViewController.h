@@ -8,12 +8,20 @@
 
 #import "SSTableViewController.h"
 #import "SSTextFieldTableViewCell.h"
+#import "SSLabelTableViewCell.h"
 
 @interface SSFormViewController : SSTableViewController <UITextFieldDelegate>
 
-- (void) showAlert:(NSString *)title withMessage:(NSString *)message;
+@property (nonatomic, strong) NSString *apiResponse;
 
-- (SSTextFieldTableViewCell *) getResponseCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath withText:(NSString *)text;
+- (void) showAlert:(NSString *)title withMessage:(NSString *)message;
+- (void) showApiError:(NSError *)error;
+
+- (SSTextFieldTableViewCell *) getTextFieldCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath withText:(NSString *)text withTag:(NSInteger)tag;
+- (SSLabelTableViewCell *) getResponseCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath withText:(NSString *)text;
 - (UITableViewCell *) getButtonCell:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath;
-    
+
+- (NSNumber *) getNumber:(NSString *)text;
+- (NSDate *) getDate:(NSString *)text;
+
 @end

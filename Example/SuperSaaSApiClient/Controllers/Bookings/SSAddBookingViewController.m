@@ -27,8 +27,6 @@
 @property (nonatomic, strong) NSString *field2r;
 @property (nonatomic, strong) NSString *superField;
 
-@property (nonatomic, strong) NSString *apiResponse;
-
 @end
 
 @implementation SSAddBookingViewController

@@ -147,6 +147,7 @@ NSString * const kApiChangesPath = @"changes.json";
     if (!self) {
         return nil;
     }
+    self.debug = NO;
     self.keyChain = [UICKeyChainStore keyChainStoreWithService:kKeyChainStore];
     [self configSerialization];
     
