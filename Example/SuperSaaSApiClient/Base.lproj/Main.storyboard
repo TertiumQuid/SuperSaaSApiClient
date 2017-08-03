@@ -383,7 +383,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JpB-y7-pxc" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4488.8000000000002" y="-657.12143928035982"/>
+            <point key="canvasLocation" x="4113" y="-555"/>
         </scene>
         <!--Bookings API-->
         <scene sceneID="V0h-KL-vDp">
@@ -432,7 +432,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LabelCell" textLabel="9Zr-tO-tVh" style="IBUITableViewCellStyleDefault" id="QjT-vu-VKn">
+                            <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="LabelCell" textLabel="9Zr-tO-tVh" style="IBUITableViewCellStyleDefault" id="QjT-vu-VKn" customClass="SSLabelTableViewCell">
                                 <rect key="frame" x="0.0" y="55.5" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="QjT-vu-VKn" id="WaS-9b-eSp">
@@ -573,7 +573,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="DIe-hQ-4ux" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7081" y="-1442"/>
+            <point key="canvasLocation" x="6865" y="-1618"/>
         </scene>
         <!--Read Free-->
         <scene sceneID="fMv-F0-19G">
@@ -650,7 +650,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wi-RG-Pab" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7081" y="-773"/>
+            <point key="canvasLocation" x="6161" y="-791"/>
         </scene>
         <!--Read Bookings-->
         <scene sceneID="pZY-ib-ZOj">
@@ -727,7 +727,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HhA-do-Rna" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7081" y="-87"/>
+            <point key="canvasLocation" x="6866" y="-415"/>
         </scene>
         <!--Read Booking-->
         <scene sceneID="ZLh-XZ-MU6">
@@ -804,7 +804,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yip-49-FF4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6196" y="332"/>
+            <point key="canvasLocation" x="6162" y="163"/>
         </scene>
         <!--Read Recent Changes-->
         <scene sceneID="OqS-TH-fni">
@@ -881,7 +881,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2em-Ab-n61" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6196" y="1015"/>
+            <point key="canvasLocation" x="6865" y="632"/>
         </scene>
         <!--Bookings-->
         <scene sceneID="uRW-e1-CN0">

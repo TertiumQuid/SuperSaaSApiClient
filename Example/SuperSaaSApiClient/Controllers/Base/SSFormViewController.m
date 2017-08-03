@@ -29,7 +29,7 @@
 
 - (BOOL) isButtonRow:(UITableView *)tableView forIndexPath:(NSIndexPath *)indexPath {
     NSInteger rows = [self tableView:tableView numberOfRowsInSection:indexPath.section];
-    return indexPath.row == rows - 1 - 1;
+    return indexPath.row == rows - 1;
 }
 
 #pragma mark - Table
@@ -100,6 +100,7 @@
                                                                      forIndexPath:indexPath];
     [cell setLayoutMargins:UIEdgeInsetsZero];
     cell.textLabel.text = text;
+    cell.userInteractionEnabled = NO;
     return cell;
 }
 

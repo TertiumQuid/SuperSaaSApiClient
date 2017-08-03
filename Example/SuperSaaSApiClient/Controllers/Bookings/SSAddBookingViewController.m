@@ -13,8 +13,11 @@
 @interface SSAddBookingViewController ()
 
 @property (nonatomic, strong) NSString *scheduleId;
-@property (nonatomic, strong) NSString *user;
+@property (nonatomic, strong) NSString *userId;
+@property (nonatomic, strong) NSDate *start;
+@property (nonatomic, strong) NSDate *finish;
 @property (nonatomic, strong) NSString *slotId;
+@property (nonatomic, strong) NSString *resourceId;
 @property (nonatomic, strong) NSString *fullName;
 @property (nonatomic, strong) NSString *address;
 @property (nonatomic, strong) NSString *mobile;
@@ -23,7 +26,7 @@
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *field1;
 @property (nonatomic, strong) NSString *field2;
-@property (nonatomic, strong) NSString *field1r;;
+@property (nonatomic, strong) NSString *field1r;
 @property (nonatomic, strong) NSString *field2r;
 @property (nonatomic, strong) NSString *superField;
 
@@ -33,7 +36,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     if (section == 0) {
-        return 15;
+        return 18;
     } else {
         return 1;
     }
@@ -49,36 +52,43 @@
                                                                              forIndexPath:indexPath];
             cell.textField.tag = indexPath.row;
             
+            NSString *text = @"";
             if (indexPath.row == 0) {
-                cell.textField.placeholder = @"Schedule ID";
+                text = @"Schedule ID";
             } else if (indexPath.row == 1) {
-                cell.textField.placeholder = @"User";
+                text = @"User ID";
             } else if (indexPath.row == 2) {
-                cell.textField.placeholder = @"Slot ID";
+                text = @"Start";
             } else if (indexPath.row == 3) {
-                cell.textField.placeholder = @"Full Name";
+                text = @"Finish";
             } else if (indexPath.row == 4) {
-                cell.textField.placeholder = @"Address";
+                text = @"Slot ID";
             } else if (indexPath.row == 5) {
-                cell.textField.placeholder = @"Mobile";
+                text = @"Resource ID";
             } else if (indexPath.row == 6) {
-                cell.textField.placeholder = @"Phone";
+                text = @"Full Name";
             } else if (indexPath.row == 7) {
-                cell.textField.placeholder = @"Country";
+                text = @"Address";
             } else if (indexPath.row == 8) {
-                cell.textField.placeholder = @"Email";
+                text = @"Mobile";
             } else if (indexPath.row == 9) {
-                cell.textField.placeholder = @"Field1";
+                text = @"Phone";
             } else if (indexPath.row == 10) {
-                cell.textField.placeholder = @"Field2";
+                text = @"Country";
             } else if (indexPath.row == 11) {
-                cell.textField.placeholder = @"Field1r";
+                text = @"Email";
             } else if (indexPath.row == 12) {
-                cell.textField.placeholder = @"Field2r";
+                text = @"Field1";
             } else if (indexPath.row == 13) {
-                cell.textField.placeholder = @"Super Field";
+                text = @"Field2";
+            } else if (indexPath.row == 14) {
+                text = @"Field1r";
+            } else if (indexPath.row == 15) {
+                text = @"Field2r";
+            } else if (indexPath.row == 16) {
+                text = @"Super Field";
             }
-            
+            cell.textField.placeholder = text;
             return cell;
             
         } else {
@@ -93,38 +103,77 @@
     return nil;
 }
 
+
+#pragma mark - Table view delegate
+
+- (void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if ([self isButtonRow:tableView forIndexPath:indexPath]) {
+        [self showApiLoading];
+        [SSApiClient createBooking:self.scheduleId
+                            userId:self.userId 
+                             start:self.start
+                            finish:self.finish
+                            slotId:self.slotId
+                        resourceId:self.resourceId
+                          fullName:self.fullName
+                           address:self.address
+                            mobile:self.mobile
+                             phone:self.phone
+                           country:self.country
+                             email:self.email
+                            field1:self.field1
+                            field2:self.field2
+                           field1r:self.field1r
+                           field2r:self.field2r
+                        superField:self.superField
+                           success:^(NSURLSessionDataTask *task, id responseObject) {
+                               [self showApiResponse:responseObject];
+                           }
+                           failure:^(NSURLSessionDataTask *task, NSError *error) {
+                               [self showApiError:error];
+                           }];
+    }
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
 #pragma mark - Text field delegate
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-//    if (textField.tag == 0) {
-//        self.name = textField.text;
-//    } else if (textField.tag == 1) {
-//        self.email = textField.text;
-//    } else if (textField.tag == 2) {
-//        self.password = textField.text;
-//    } else if (textField.tag == 3) {
-//        self.fullName = textField.text;
-//    } else if (textField.tag == 4) {
-//        self.address = textField.text;
-//    } else if (textField.tag == 5) {
-//        self.mobile = textField.text;
-//    } else if (textField.tag == 6) {
-//        self.phone = textField.text;
-//    } else if (textField.tag == 7) {
-//        self.country = textField.text;
-//    } else if (textField.tag == 8) {
-//        self.field1 = textField.text;
-//    } else if (textField.tag == 9) {
-//        self.field2 = textField.text;
-//    } else if (textField.tag == 10) {
-//        self.superField = textField.text;
-//    } else if (textField.tag == 11) {
-//        self.credit = textField.text;
-//    } else if (textField.tag == 12) {
-//        self.role = textField.text;
-//    } else if (textField.tag == 13) {
-//        self.userId = textField.text;
-//    }
+    if (textField.tag == 0) {
+        self.scheduleId = textField.text;
+    } else if (textField.tag == 1) {
+        self.userId = textField.text;
+    } else if (textField.tag == 2) {
+        self.start = [self getDate:textField.text];
+    } else if (textField.tag == 3) {
+        self.finish = [self getDate:textField.text];
+    } else if (textField.tag == 4) {
+        self.slotId = textField.text;
+    } else if (textField.tag == 5) {
+        self.resourceId = textField.text;
+    } else if (textField.tag == 6) {
+        self.fullName = textField.text;
+    } else if (textField.tag == 7) {
+        self.address = textField.text;
+    } else if (textField.tag == 8) {
+        self.mobile = textField.text;
+    } else if (textField.tag == 9) {
+        self.phone = textField.text;
+    } else if (textField.tag == 10) {
+        self.country = textField.text;
+    } else if (textField.tag == 11) {
+        self.email = textField.text;
+    } else if (textField.tag == 12) {
+        self.field1 = textField.text;
+    } else if (textField.tag == 13) {
+        self.field2 = textField.text;
+    } else if (textField.tag == 14) {
+        self.field1r = textField.text;
+    } else if (textField.tag == 15) {
+        self.field2r = textField.text;
+    } else if (textField.tag == 16) {
+        self.superField = textField.text;
+    }
 }
 
 @end

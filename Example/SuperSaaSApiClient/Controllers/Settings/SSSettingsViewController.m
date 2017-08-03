@@ -7,11 +7,12 @@
 //
 
 #import "SSSettingsViewController.h"
-#import "SSLoginViewController.h"
+#import "SSLabelTableViewCell.h"
 #import "SSApiClient.h"
 
 NSString * const kStoredAccountKey = @"SaaSAccountName";
 NSString * const kStoredUserKey = @"SaaSUsername";
+NSString * const kStoredChecksumKey = @"SaaSChecksumToken";
 
 @interface SSSettingsViewController ()
 
@@ -20,18 +21,20 @@ NSString * const kStoredUserKey = @"SaaSUsername";
 @implementation SSSettingsViewController
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 3;
+    return 2;
 }
     
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    if (section == 0) {
+        return 3;
+    } else {
+        return 1;
+    }
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
-        return @"Account Name";
-    } else if (section == 1) {
-        return @"User Name";
+        return @"Credentials";
     } else {
         return @"";
     }
@@ -42,19 +45,22 @@ NSString * const kStoredUserKey = @"SaaSUsername";
     
     if (indexPath.section == 0) {
         static NSString *cellId = @"LabelCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                         forIndexPath:indexPath];
-        cell.textLabel.text = [defaults stringForKey:kStoredAccountKey];
+        [self.tableView registerClass:[SSLabelTableViewCell class] forCellReuseIdentifier:cellId];
+        SSLabelTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
+                                                                     forIndexPath:indexPath];
+        
+        NSString *text = @"";
+        if (indexPath.row == 0) {
+            text = [NSString stringWithFormat:@"Account ID: %@", [defaults stringForKey:kStoredAccountKey]];
+        } else if (indexPath.row == 1) {
+            text = [NSString stringWithFormat:@"User ID: %@", [defaults stringForKey:kStoredUserKey]];
+        } else if (indexPath.row == 2) {
+            text = [NSString stringWithFormat:@"Checksum: %@", [defaults stringForKey:kStoredChecksumKey]];
+        }
+        cell.textLabel.text = text;
         [cell setLayoutMargins:UIEdgeInsetsZero];
         return cell;
-    } else if (indexPath.section == 1) {
-        static NSString *cellId = @"LabelCell";
-        UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId
-                                                                forIndexPath:indexPath];
-        cell.textLabel.text = [defaults stringForKey:kStoredUserKey];
-        [cell setLayoutMargins:UIEdgeInsetsZero];
-        return cell;
-    } else if (indexPath.section == 2) {
+    } else {
         static NSString *cellId = @"ButtonCell";
         [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellId];
         UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellId

@@ -125,6 +125,7 @@
                                  userId:(NSString *)userId
                                   start:(NSDate *)start
                                  finish:(NSDate *)finish
+                                 slotId:(NSString *)slotId
                              resourceId:(NSString *)resourceId
                                fullName:(NSString *)fullName
                                 address:(NSString *)address
@@ -139,23 +140,6 @@
                              superField:(NSString *)superField
                              success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                              failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
-    
-+ (NSURLSessionDataTask *)createBooking:(NSString *)scheduleId
-                                 userId:(NSString *)userId
-                                 slotId:(NSString *)slotId
-                               fullName:(NSString *)fullName
-                                address:(NSString *)address
-                                 mobile:(NSString *)mobile
-                                  phone:(NSString *)phone
-                                country:(NSString *)country
-                                  email:(NSString *)email
-                                 field1:(NSString *)field1
-                                 field2:(NSString *)field2
-                                field1r:(NSString *)field1r
-                                field2r:(NSString *)field2r
-                             superField:(NSString *)superField
-                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
     
 + (NSURLSessionDataTask *)updateBooking:(NSString *)bookingId
                                  userId:(NSString *)userId

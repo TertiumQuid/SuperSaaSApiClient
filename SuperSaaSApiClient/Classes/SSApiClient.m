@@ -112,6 +112,25 @@ NSString * const kApiChangesPath = @"changes.json";
                               full:(BOOL)full
                            success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                            failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
+- (NSURLSessionDataTask *)createBooking:(NSString *)scheduleId
+                                 userId:(NSString *)userId
+                                  start:(NSDate *)start
+                                 finish:(NSDate *)finish
+                                 slotId:(NSString *)slotId
+                             resourceId:(NSString *)resourceId
+                               fullName:(NSString *)fullName
+                                address:(NSString *)address
+                                 mobile:(NSString *)mobile
+                                  phone:(NSString *)phone
+                                country:(NSString *)country
+                                  email:(NSString *)email
+                                 field1:(NSString *)field1
+                                 field2:(NSString *)field2
+                                field1r:(NSString *)field1r
+                                field2r:(NSString *)field2r
+                             superField:(NSString *)superField
+                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
 - (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure;
@@ -543,6 +562,65 @@ NSString * const kApiChangesPath = @"changes.json";
     
 }
 
++ (NSURLSessionDataTask *)createBooking:(NSString *)scheduleId
+                                 userId:(NSString *)userId
+                                  start:(NSDate *)start
+                                 finish:(NSDate *)finish
+                                 slotId:(NSString *)slotId
+                             resourceId:(NSString *)resourceId
+                               fullName:(NSString *)fullName
+                                address:(NSString *)address
+                                 mobile:(NSString *)mobile
+                                  phone:(NSString *)phone
+                                country:(NSString *)country
+                                  email:(NSString *)email
+                                 field1:(NSString *)field1
+                                 field2:(NSString *)field2
+                                field1r:(NSString *)field1r
+                                field2r:(NSString *)field2r
+                             superField:(NSString *)superField
+                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    return [self.shared createBooking:scheduleId userId:userId start:start finish:finish slotId:slotId resourceId:resourceId fullName:fullName address:address mobile:mobile phone:phone country:country email:email field1:field1 field2:field2 field1r:field1r field2r:field2r superField:superField success:success failure:failure];
+    
+}
+
+- (NSURLSessionDataTask *)createBooking:(NSString *)scheduleId
+                                 userId:(NSString *)userId
+                                  start:(NSDate *)start
+                                 finish:(NSDate *)finish
+                                 slotId:(NSString *)slotId
+                             resourceId:(NSString *)resourceId
+                               fullName:(NSString *)fullName
+                                address:(NSString *)address
+                                 mobile:(NSString *)mobile
+                                  phone:(NSString *)phone
+                                country:(NSString *)country
+                                  email:(NSString *)email
+                                 field1:(NSString *)field1
+                                 field2:(NSString *)field2
+                                field1r:(NSString *)field1r
+                                field2r:(NSString *)field2r
+                             superField:(NSString *)superField
+                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
+                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+    NSMutableDictionary *params = @{@"schedule_id": scheduleId, @"booking[full_name]": fullName, @"booking[address]": address, @"booking[mobile]": mobile, @"booking[phone]": phone, @"booking[country]": country, @"booking[email]": email};
+    NSMutableDictionary *obj = @{@"full_name": fullName, @"address": address, @"mobile": mobile, @"phone": phone, @"country": country, @"email": email};
+    
+    if (userId != NULL) {
+        [params setObject:userId forKey:@"user_id"];
+    }
+    if (resourceId != NULL) {
+        [params setObject:resourceId forKey:@"resource_id"];
+        [obj setObject:start forKey:@"start"];
+        [obj setObject:finish forKey:@"finish"];
+    } else if (slotId != NULL) {
+        [obj setObject:slotId forKey:@"slot_id"];
+    }
+    [params setObject:obj forKey:@"booking"];
+    return [self POST:kApiBookingsPath parameters:params success:success failure:failure];
+}
+
 + (NSURLSessionDataTask *)readBooking:(NSString *)scheduleId
                               success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                               failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
@@ -569,7 +647,6 @@ NSString * const kApiChangesPath = @"changes.json";
                                success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
                                failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     return [self.shared readBookings:scheduleId limit:limit start:start success:success failure:failure];
-
 }
 
 - (NSURLSessionDataTask *)readBookings:(NSString *)scheduleId
